@@ -341,3 +341,7 @@ X509 *SSL_get_peer_certificate(const SSL *ssl);
 
 int SSL_CTX_set_cipher_list(SSL_CTX *ctx, const char *str);
 int SSL_set_cipher_list(SSL *ssl, const char *str);
+
+ void SSL_CTX_set_cert_store(SSL_CTX *ctx, X509_STORE *store);
+ void SSL_CTX_set1_cert_store(SSL_CTX *ctx, X509_STORE *store);
+ X509_STORE *SSL_CTX_get_cert_store(const SSL_CTX *ctx);
