@@ -18,12 +18,12 @@ import (
 func GoSslPskClientCbFunc(_ssl uintptr, hint *C.char, identity *C.char,
 	max_identity_len C.uint, psk *C.uchar, max_psk_len C.uint) C.uint {
 
-	fmt.Printf("psk client cb\n")
+	//fmt.Printf("psk client cb\n")
 
 	ssl := SwigcptrSSL(_ssl)
 	c := SSL_get_ex_data(ssl, sslDataIdx)
 	conn := (*Conn)(unsafe.Pointer(c))
-	fmt.Printf("config %+v\n", conn.config)
+	//fmt.Printf("config %+v\n", conn.config)
 
 	identityC := C.CString(conn.config.Identity)
 	defer C.free(unsafe.Pointer(identityC))
@@ -65,6 +65,9 @@ type Config struct {
 	Identity           string
 	Psk                []byte
 	InsecureSkipVerify bool
+	RootCA             X509
+	ClientCA           X509
+	ClientAuth         int
 }
 
 type listener struct {
@@ -79,17 +82,14 @@ func (l *listener) Accept() (net.Conn, error) {
 	if err != nil {
 		return nil, err
 	}
-	fmt.Printf("accept connection from %s\n", conn.RemoteAddr())
+	//fmt.Printf("accept connection from %s\n", conn.RemoteAddr())
 	c := &Conn{c: conn, config: l.config}
 	if err := c.setupServer(); err != nil {
 		fmt.Printf("set server error %s\n", err)
 		conn.Close()
 		return nil, err
 	}
-	fmt.Printf("setup tls finished\n")
-	if err := c.Handshake(); err != nil {
-		fmt.Printf("handshake error %s\n", err)
-	}
+	//fmt.Printf("setup tls finished\n")
 	return c, nil
 }
 
@@ -210,6 +210,11 @@ func (c *Conn) setupServer() error {
 		return fmt.Errorf("set certificate %s", GetSslError())
 	}
 
+	if c.config.ClientAuth > 0 {
+		//fmt.Printf("server set client auth\n")
+		SSL_CTX_set_verify(ctx, SSL_VERIFY_PEER|SSL_VERIFY_FAIL_IF_NO_PEER_CERT, MY_ssl_verify_cb)
+	}
+
 	sbio := BIO_new_ssl(ctx, 0)
 	bio := BIO_new_fd(int(fconn.Fd()), BIO_NOCLOSE)
 	BIO_push(sbio, bio)
@@ -242,8 +247,27 @@ func (c *Conn) setupClient() error {
 	}
 
 	if c.config.PrivateKey != nil && c.config.Certificate != nil {
-		SSL_CTX_use_PrivateKey(c.ctx, c.config.PrivateKey)
-		SSL_CTX_use_certificate(c.ctx, c.config.Certificate)
+		//fmt.Printf("client set certificate\n")
+		SSL_use_PrivateKey(c.ssl, c.config.PrivateKey)
+		SSL_use_certificate(c.ssl, c.config.Certificate)
+	}
+
+	if c.config.RootCA != nil {
+		store := SSL_CTX_get_cert_store(c.ctx)
+		if store.Swigcptr() == uintptr(0) {
+			//fmt.Printf("get cert store failed, retry...\n")
+			SSL_CTX_set_default_verify_paths(c.ctx)
+			store = SSL_CTX_get_cert_store(c.ctx)
+		}
+		if store.Swigcptr() != uintptr(0) {
+			//fmt.Printf("add custom ca\n")
+			ret := X509_STORE_add_cert(store, c.config.RootCA)
+			if ret < 0 {
+				fmt.Printf("add root cert failed %s\n", GetSslError())
+			}
+		} else {
+			fmt.Printf("get cert store failed\n")
+		}
 	}
 
 	SSL_set_verify(c.ssl, SSL_VERIFY_PEER, MY_ssl_verify_cb)
