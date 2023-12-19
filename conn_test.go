@@ -54,7 +54,7 @@ func startTLSServerOpenssl(config *Config, handler func(c net.Conn) error) (addr
 }
 
 func TestConnDial(t *testing.T) {
-	cert, err := tls.LoadX509KeyPair("./client.cert", "./client.key")
+	cert, err := tls.LoadX509KeyPair("./certs/client.cert", "./certs/client.key")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -100,7 +100,7 @@ func TestConnDial(t *testing.T) {
 }
 
 func TestConnClient(t *testing.T) {
-	cert, err := tls.LoadX509KeyPair("./client.cert", "./client.key")
+	cert, err := tls.LoadX509KeyPair("./certs/client.cert", "./certs/client.key")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -149,7 +149,7 @@ func TestConnClient(t *testing.T) {
 }
 
 func TestConnAlpn(t *testing.T) {
-	cert, err := tls.LoadX509KeyPair("./client.cert", "./client.key")
+	cert, err := tls.LoadX509KeyPair("./certs/server.cert", "./certs/server.key")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -214,46 +214,69 @@ func TestConnAlpn(t *testing.T) {
 }
 
 func TestSSLConn(t *testing.T) {
-	b := BIO_new_file("./client.cert", "r")
-	cert := PEM_read_bio_X509(b, SwigcptrX509(0), nil, 0)
-	BIO_free(b)
-	if cert.Swigcptr() == 0 {
-		t.Errorf("read cert failed")
+	key, err := LoadPrivateKey("./certs/server.key")
+	if err != nil {
+		t.Error(err)
 		return
 	}
-	b = BIO_new_file("./client.key", "r")
-	key := PEM_read_bio_PrivateKey(b, SwigcptrEVP_PKEY(0), nil, 0)
-	BIO_free(b)
-	if key.Swigcptr() == 0 {
-		t.Errorf("read key failed")
+	cert, err := LoadCertificate("./certs/server.cert")
+	if err != nil {
+		t.Error(err)
 		return
 	}
 
-	addr, closeFunc, err := startTLSServerOpenssl(&Config{PrivateKey: key, Certificate: cert}, func(c net.Conn) error {
-		defer c.Close()
+	addr, closeFunc, err := startTLSServerOpenssl(&Config{
+		PrivateKey: key, Certificate: cert,
+		ClientAuth: 1,
+	},
+		func(c net.Conn) error {
+			defer c.Close()
 
-		fmt.Printf("connected\n")
+			fmt.Printf("connected\n")
 
-		buf := make([]byte, 1024)
-		n, err := c.Read(buf)
-		if err != nil {
-			fmt.Printf("read %s\n", err)
-			return err
-		}
-		c.Write(buf[:n])
-		return nil
-	})
+			buf := make([]byte, 1024)
+			n, err := c.Read(buf)
+			if err != nil {
+				fmt.Printf("read %s\n", err)
+				return err
+			}
+			c.Write(buf[:n])
+			return nil
+		})
 	if err != nil {
 		t.Fatal(err)
 	}
 	defer closeFunc()
 
-	conn, err := Dial("tcp", addr, &Config{InsecureSkipVerify: true, ServerName: "localhost"})
+	caCert, err := LoadCertificate("./certs/ca.cert")
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	key, err = LoadPrivateKey("./certs/client.key")
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	cert, err = LoadCertificate("./certs/client.cert")
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	_ = cert
+	_ = key
+	conn, err := Dial("tcp", addr, &Config{
+		PrivateKey:  key,
+		Certificate: cert,
+		//InsecureSkipVerify: false,
+		ServerName: "localhost",
+		RootCA:     caCert,
+	})
 	if err != nil {
 		t.Fatal(err)
 	}
 	defer conn.Close()
-	_, err = conn.Write([]byte("hello"))
+	_, err = conn.Write([]byte("hello, world"))
 	if err != nil {
 		t.Fatal(err)
 	}
