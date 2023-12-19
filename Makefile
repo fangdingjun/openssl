@@ -1,7 +1,9 @@
 all: gen build
 
-gen:
-	swig -I/usr/include -go -intgosize 64 openssl.i
+gen: openssl.go
 
-build:
+openssl.go: bio.i evp.i openssl.i ssl_typemaps.i ssl.i x509.i
+	swig -go -intgosize 64 openssl.i
+
+build: 
 	go build
