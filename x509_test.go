@@ -8,14 +8,14 @@ import (
 )
 
 func TestReadCert(t *testing.T) {
-	b := BIO_new_file("./client.cert", "r")
+	b := BIO_new_file("./certs/server.cert", "r")
 	cert := PEM_read_bio_X509(b, SwigcptrX509(0), nil, 0)
 	BIO_free(b)
 	if cert.Swigcptr() == 0 {
 		t.Errorf("read cert failed")
 		return
 	}
-	b = BIO_new_file("./client.key", "r")
+	b = BIO_new_file("./certs/server.key", "r")
 	key := PEM_read_bio_PrivateKey(b, SwigcptrEVP_PKEY(0), nil, 0)
 	BIO_free(b)
 	if key.Swigcptr() == 0 {
