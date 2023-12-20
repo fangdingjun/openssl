@@ -57,17 +57,36 @@ func GoSslVerifyCb(preverify_ok C.int, x509_ctx uintptr) C.int {
 var sslDataIdx = 0
 var ctxDataIdx = 0
 
+// Config tls config
 type Config struct {
-	ServerName         string
-	PrivateKey         EVP_PKEY
-	NextProtos         []string
-	Certificate        X509
-	Identity           string
-	Psk                []byte
+	// ServerName server sni name
+	ServerName string
+
+	// private key to use
+	PrivateKey EVP_PKEY
+
+	// ALPN names
+	NextProtos []string
+
+	// certificate to use
+	Certificate X509
+
+	// psk identity used in psk mode
+	Identity string
+
+	// the pre-shared key used in psk mode, this field set will enable psk mode
+	Psk []byte
+
+	// skip verify server certificate
 	InsecureSkipVerify bool
-	RootCA             X509
-	ClientCA           X509
-	ClientAuth         int
+
+	// additional root ca to use
+	RootCA X509
+
+	ClientCA X509
+
+	// verify client or not
+	ClientAuth int
 }
 
 type listener struct {
@@ -101,6 +120,7 @@ func (l *listener) Close() error {
 	return l.ln.Close()
 }
 
+// Listen create a listener, when accept, auto create a tls context for the new connection
 func Listen(network, laddr string, config *Config) (net.Listener, error) {
 	cln, err := net.Listen(network, laddr)
 	if err != nil {
@@ -113,11 +133,13 @@ func Listen(network, laddr string, config *Config) (net.Listener, error) {
 	return ln, nil
 }
 
+// NewListener create listener with exists listener and config
 func NewListener(inner net.Listener, config *Config) net.Listener {
 	ln := &listener{ln: inner, config: config}
 	return ln
 }
 
+// Conn a tls connection
 type Conn struct {
 	ctx               SSL_CTX
 	ssl               SSL
@@ -131,6 +153,7 @@ type Conn struct {
 
 var _ net.Conn = &Conn{}
 
+// Client initail a tls client use exists connection conn and config
 func Client(conn net.Conn, config *Config) *Conn {
 	tcpconn, ok := conn.(*net.TCPConn)
 	if !ok {
@@ -159,11 +182,12 @@ func Client(conn net.Conn, config *Config) *Conn {
 	return sslconn
 }
 
+// Dial create a connection to addr and intial the tls context
 func Dial(network, addr string, config *Config) (*Conn, error) {
 	ctx := SSL_CTX_new(TLS_client_method())
 	bio := BIO_new_ssl_connect(ctx)
 	BIO_set_conn_hostname(bio, addr)
-	BIO_set_ssl_mode(bio, 1)
+	//BIO_set_ssl_mode(bio, 1)
 	ssl := BIO_get_ssl(bio)
 
 	c := &Conn{
@@ -175,6 +199,7 @@ func Dial(network, addr string, config *Config) (*Conn, error) {
 	return c, nil
 }
 
+// Server create tls context for server use exists connection conn
 func Server(conn net.Conn, config *Config) *Conn {
 	c := &Conn{c: conn, config: config}
 	if err := c.setupServer(); err != nil {
@@ -276,6 +301,7 @@ func (c *Conn) setupClient() error {
 	return nil
 }
 
+// Handshake perform the tls handshake
 func (c *Conn) Handshake() error {
 	val := atomic.LoadInt64(&c.handshakeComplete)
 	if val > 0 {
@@ -289,6 +315,7 @@ func (c *Conn) Handshake() error {
 	return nil
 }
 
+// Read read data from tls conn
 func (c *Conn) Read(buf []byte) (int, error) {
 	a := atomic.LoadInt64(&c.handshakeComplete)
 	if a == 0 {
@@ -304,6 +331,7 @@ func (c *Conn) Read(buf []byte) (int, error) {
 	return n, nil
 }
 
+// Write write data through tls conn
 func (c *Conn) Write(buf []byte) (int, error) {
 	a := atomic.LoadInt64(&c.handshakeComplete)
 	if a == 0 {
@@ -319,6 +347,7 @@ func (c *Conn) Write(buf []byte) (int, error) {
 	return n, nil
 }
 
+// Close close the tls connection
 func (c *Conn) Close() error {
 	if c.ssl != nil {
 		SSL_shutdown(c.ssl)
@@ -341,6 +370,7 @@ func (c *Conn) Close() error {
 	return nil
 }
 
+// RemoteAddr get the remote addr
 func (c *Conn) RemoteAddr() net.Addr {
 	if c.c != nil {
 		return c.c.RemoteAddr()
@@ -348,6 +378,7 @@ func (c *Conn) RemoteAddr() net.Addr {
 	return &net.TCPAddr{}
 }
 
+// LocalAddr get local addr
 func (c *Conn) LocalAddr() net.Addr {
 	if c.c != nil {
 		return c.c.LocalAddr()
@@ -355,18 +386,22 @@ func (c *Conn) LocalAddr() net.Addr {
 	return &net.TCPAddr{}
 }
 
+// SetDeadline set the dead line
 func (c *Conn) SetDeadline(t time.Time) error {
 	return fmt.Errorf("not implement")
 }
 
+// SetReadDeadline set the read dead line
 func (c *Conn) SetReadDeadline(t time.Time) error {
 	return fmt.Errorf("not implement")
 }
 
+// SetWriteDeadline set the write dead line
 func (c *Conn) SetWriteDeadline(t time.Time) error {
 	return fmt.Errorf("not implement")
 }
 
+// ConnectionState get connection state
 func (c *Conn) ConnectionState() ConnectionState {
 	state := ConnectionState{}
 	val := atomic.LoadInt64(&c.handshakeComplete)
@@ -380,12 +415,14 @@ func (c *Conn) ConnectionState() ConnectionState {
 	return state
 }
 
+// ConnectionState connection state
 type ConnectionState struct {
 	NegotiatedProtocol string
 	HandshakeComplete  bool
 	PeerCertificate    X509
 }
 
+// GetCertificateSubject get the subject from x509 certificate
 func GetCertificateSubject(cert X509) string {
 	name := X509_get_subject_name(cert)
 	bio := BIO_new(BIO_s_mem())
@@ -398,6 +435,7 @@ func GetCertificateSubject(cert X509) string {
 	return ""
 }
 
+// GetCertificateIssuer get the issuer subject from x509 certificate
 func GetCertificateIssuer(cert X509) string {
 	name := X509_get_issuer_name(cert)
 	bio := BIO_new(BIO_s_mem())
@@ -410,6 +448,7 @@ func GetCertificateIssuer(cert X509) string {
 	return ""
 }
 
+// GetSslError get the current ssl error
 func GetSslError() string {
 	bio := BIO_new(BIO_s_mem())
 	ERR_print_errors(bio)
