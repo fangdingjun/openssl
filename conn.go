@@ -40,9 +40,12 @@ func GoSslPskClientCbFunc(_ssl uintptr, hint *C.char, identity *C.char,
 
 //export GoSslVerifyCb
 func GoSslVerifyCb(preverify_ok C.int, x509_ctx uintptr) C.int {
-	//fmt.Printf("verify callback\n")
-	a := X509_STORE_CTX_get_ex_data(SwigcptrX509_STORE_CTX(x509_ctx), SSL_get_ex_data_X509_STORE_CTX_idx())
+	//fmt.Printf("verify callback, preverify %d\n", preverify_ok)
+	storeCtx := SwigcptrX509_STORE_CTX(x509_ctx)
+	a := X509_STORE_CTX_get_ex_data(storeCtx, SSL_get_ex_data_X509_STORE_CTX_idx())
+
 	ssl := SwigcptrSSL(a)
+
 	c := SSL_get_ex_data(ssl, sslDataIdx)
 	conn := (*Conn)(unsafe.Pointer(c))
 
@@ -50,6 +53,11 @@ func GoSslVerifyCb(preverify_ok C.int, x509_ctx uintptr) C.int {
 
 	if conn.config.InsecureSkipVerify || conn.isServer {
 		return C.int(1)
+	}
+
+	if int(preverify_ok) == 0 {
+		errcode := X509_STORE_CTX_get_error(storeCtx)
+		fmt.Printf("certificate verify error: %s\n", X509_verify_cert_error_string(int64(errcode)))
 	}
 	return preverify_ok
 }
@@ -163,6 +171,8 @@ func Client(conn net.Conn, config *Config) *Conn {
 	fconn, _ := tcpconn.File()
 
 	ctx := SSL_CTX_new(TLS_client_method())
+	SSL_CTX_set_default_verify_paths(ctx)
+
 	bio := BIO_new_fd(int(fconn.Fd()), BIO_NOCLOSE)
 
 	bio1 := BIO_new_ssl(ctx, 1)
@@ -185,6 +195,8 @@ func Client(conn net.Conn, config *Config) *Conn {
 // Dial create a connection to addr and intial the tls context
 func Dial(network, addr string, config *Config) (*Conn, error) {
 	ctx := SSL_CTX_new(TLS_client_method())
+	SSL_CTX_set_default_verify_paths(ctx)
+
 	bio := BIO_new_ssl_connect(ctx)
 	BIO_set_conn_hostname(bio, addr)
 	//BIO_set_ssl_mode(bio, 1)
@@ -279,11 +291,6 @@ func (c *Conn) setupClient() error {
 
 	if c.config.RootCA != nil {
 		store := SSL_CTX_get_cert_store(c.ctx)
-		if store.Swigcptr() == uintptr(0) {
-			//fmt.Printf("get cert store failed, retry...\n")
-			SSL_CTX_set_default_verify_paths(c.ctx)
-			store = SSL_CTX_get_cert_store(c.ctx)
-		}
 		if store.Swigcptr() != uintptr(0) {
 			//fmt.Printf("add custom ca\n")
 			ret := X509_STORE_add_cert(store, c.config.RootCA)
@@ -296,6 +303,7 @@ func (c *Conn) setupClient() error {
 	}
 
 	SSL_set_verify(c.ssl, SSL_VERIFY_PEER, MY_ssl_verify_cb)
+	SSL_set_verify_depth(c.ssl, 4)
 	SSL_CTX_set_ex_data(c.ctx, ctxDataIdx, uintptr(unsafe.Pointer(c)))
 	SSL_set_ex_data(c.ssl, sslDataIdx, uintptr(unsafe.Pointer(c)))
 	return nil
@@ -307,9 +315,9 @@ func (c *Conn) Handshake() error {
 	if val > 0 {
 		return nil
 	}
-	ret := SSL_do_handshake(c.ssl)
-	if ret < 0 {
-		return fmt.Errorf("%s", GetSslError())
+	ret := BIO_do_handshake(c.bio)
+	if ret <= 0 {
+		return fmt.Errorf("handshake error %s", GetSslError())
 	}
 	atomic.StoreInt64(&c.handshakeComplete, 1)
 	return nil
