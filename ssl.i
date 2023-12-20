@@ -215,8 +215,8 @@ int SSL_use_PrivateKey(SSL *ssl, EVP_PKEY *pkey);
 int SSL_set_tlsext_host_name(SSL *s, const char *name);
 //
 //
-//int SSL_CTX_load_verify_locations(SSL_CTX *ctx, const char *CAfile,
-//                                const char *CApath);
+int SSL_CTX_load_verify_locations(SSL_CTX *ctx, const char *CAfile,
+                                const char *CApath);
 //
 int SSL_CTX_set_default_verify_paths(SSL_CTX *ctx);
 //
@@ -326,8 +326,8 @@ void ERR_print_errors(BIO *bp);
 void SSL_CTX_set_verify(SSL_CTX *ctx, int mode, SSL_verify_cb verify_callback);
 int SSL_get_ex_data_X509_STORE_CTX_idx(void);
 //
-//void SSL_CTX_set_verify_depth(SSL_CTX *ctx, int depth);
-//void SSL_set_verify_depth(SSL *ssl, int depth);
+void SSL_CTX_set_verify_depth(SSL_CTX *ctx, int depth);
+void SSL_set_verify_depth(SSL *ssl, int depth);
 //
 //int SSL_verify_client_post_handshake(SSL *ssl);
 //void SSL_CTX_set_post_handshake_auth(SSL_CTX *ctx, int val);

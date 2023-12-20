@@ -241,3 +241,5 @@ X509_NAME *X509_get_issuer_name(const X509 *x);
 //X509_NAME *X509_CRL_get_issuer(const X509_CRL *crl);
 //int X509_CRL_set_issuer_name(X509_CRL *x, X509_NAME *name);
 //
+ const char *X509_verify_cert_error_string(long n);
+int   X509_STORE_CTX_get_error(X509_STORE_CTX *ctx);
