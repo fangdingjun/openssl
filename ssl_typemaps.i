@@ -46,4 +46,9 @@
     $2=$input.len;
 }
 
+%typemap(gotype) (const unsigned char *inbuf) %{[]byte%}
+%typemap(in) (const unsigned char *inbuf) {
+    $1=$input.array;
+}
+
 #define STACK_OF(type) struct stack_st_## type
