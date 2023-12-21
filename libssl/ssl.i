@@ -46,13 +46,13 @@ int SSL_read(SSL *ssl, void *inbuf, int len);
 //
 //#define PSK_MAX_IDENTITY_LEN 128
 //#define PSK_MAX_PSK_LEN 256
-//typedef unsigned int (*SSL_psk_client_cb_func)(SSL *ssl,
-//                                               const char *hint,
-//                                               char *identity,
-//                                               unsigned int max_identity_len,
-//                                               unsigned char *psk,
-//                                               unsigned int max_psk_len);
-//
+typedef unsigned int (*SSL_psk_client_cb_func)(SSL *ssl,
+                                               const char *hint,
+                                               char *identity,
+                                               unsigned int max_identity_len,
+                                               unsigned char *psk,
+                                               unsigned int max_psk_len);
+
 %{
 extern unsigned int GoSslPskClientCbFunc(SSL *ssl,
                                                const char *hint,
@@ -344,4 +344,5 @@ X509 *SSL_get_peer_certificate(const SSL *ssl);
 // void SSL_CTX_set_cert_store(SSL_CTX *ctx, X509_STORE *store);
 // void SSL_CTX_set1_cert_store(SSL_CTX *ctx, X509_STORE *store);
  X509_STORE *SSL_CTX_get_cert_store(const SSL_CTX *ctx);
-//
+
+long SSL_get_verify_result(const SSL *ssl);
