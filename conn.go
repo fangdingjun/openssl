@@ -318,7 +318,7 @@ func (c *Conn) Handshake() error {
 	}
 	ret := libssl.BIO_do_handshake(c.bio)
 	if ret <= 0 {
-		return fmt.Errorf("handshake error %s", GetSslError())
+		return fmt.Errorf("handshake error %s", libssl.X509_verify_cert_error_string(libssl.SSL_get_verify_result(c.ssl)))
 	}
 	atomic.StoreInt64(&c.handshakeComplete, 1)
 	return nil
