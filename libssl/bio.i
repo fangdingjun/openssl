@@ -113,15 +113,35 @@ int BIO_write(BIO *b, const void *VOIDBUF, int len);
 //BIO *BIO_dup_chain(BIO *in);
 int BIO_read(BIO *b, void *inbuf, int len);
 //
-//const BIO_METHOD *BIO_s_bio(void);
+const BIO_METHOD *BIO_s_bio(void);
 //
-//int BIO_make_bio_pair(BIO *b1, BIO *b2);
+int BIO_make_bio_pair(BIO *b1, BIO *b2);
 //int BIO_destroy_bio_pair(BIO *b);
 //int BIO_shutdown_wr(BIO *b);
 //
 //int BIO_set_write_buf_size(BIO *b, long size);
 //size_t BIO_get_write_buf_size(BIO *b, long size);
-//
+%{
+struct bio_pair {
+    BIO *bio1;
+    BIO *bio2;
+};
+struct bio_pair * custom_new_bio_pair(){
+    struct bio_pair * p = malloc(sizeof(struct bio_pair));
+    int ret = BIO_new_bio_pair(&p->bio1, 0, &p->bio2, 0);
+    if (ret <= 0){
+        free(p);
+        return NULL;
+    }
+    return p;
+}
+%}
+struct bio_pair {
+        BIO *bio1;
+        BIO *bio2;
+};
+%rename(BIO_new_bio_pair) custom_new_bio_pair;
+struct bio_pair * custom_new_bio_pair();
 //int BIO_new_bio_pair(BIO **bio1, size_t writebuf1, BIO **bio2, size_t writebuf2);
 //
 //int BIO_get_write_guarantee(BIO *b);
@@ -143,7 +163,7 @@ long BIO_set_conn_hostname(BIO *b, char *name);
 //const BIO_ADDR *BIO_get_conn_address(BIO *b);
 //const long BIO_get_conn_ip_family(BIO *b);
 //
-//long BIO_set_nbio(BIO *b, long n);
+long BIO_set_nbio(BIO *b, long n);
 //
 long BIO_do_connect(BIO *b);
 //
