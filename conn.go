@@ -256,7 +256,10 @@ func (c *Conn) setupServer() error {
 
 func (c *Conn) setupClient() error {
 	if c.config.ServerName != "" {
-		libssl.SSL_set_tlsext_host_name(c.ssl, c.config.ServerName)
+		ret := libssl.SSL_set_tlsext_host_name(c.ssl, c.config.ServerName)
+		if ret < 0 {
+			return fmt.Errorf("set tlsext host name error %s", GetSslError())
+		}
 	}
 	if len(c.config.NextProtos) > 0 {
 		buf := []byte{}
@@ -264,25 +267,39 @@ func (c *Conn) setupClient() error {
 			buf = append(buf, byte(len(p)))
 			buf = append(buf, []byte(p)...)
 		}
-		libssl.SSL_set_alpn_protos(c.ssl, buf)
+		ret := libssl.SSL_set_alpn_protos(c.ssl, buf)
+		if ret < 0 {
+			return fmt.Errorf("set alpn protos error %s", GetSslError())
+		}
 	}
 
-	if c.config.PrivateKey != nil && c.config.Certificate != nil {
-		//fmt.Printf("client set certificate\n")
-		libssl.SSL_use_PrivateKey(c.ssl, c.config.PrivateKey)
-		libssl.SSL_use_certificate(c.ssl, c.config.Certificate)
-	}
-
-	if c.config.RootCA != nil {
-		store := libssl.SSL_CTX_get_cert_store(c.ctx)
-		if store.Swigcptr() != uintptr(0) {
-			//fmt.Printf("add custom ca\n")
-			ret := libssl.X509_STORE_add_cert(store, c.config.RootCA)
+	if len(c.config.Psk) > 0 {
+		// pre-shared key setup
+		libssl.SSL_set_psk_client_callback(c.ssl, libssl.Custom_ssl_psk_client_cb_func)
+	} else {
+		if c.config.PrivateKey != nil && c.config.Certificate != nil {
+			//fmt.Printf("client set certificate\n")
+			ret := libssl.SSL_use_PrivateKey(c.ssl, c.config.PrivateKey)
 			if ret < 0 {
-				fmt.Printf("add root cert failed %s\n", GetSslError())
+				return fmt.Errorf("set private key error %s", GetSslError())
 			}
-		} else {
-			fmt.Printf("get cert store failed\n")
+			ret = libssl.SSL_use_certificate(c.ssl, c.config.Certificate)
+			if ret < 0 {
+				return fmt.Errorf("set certificate error %s", GetSslError())
+			}
+		}
+
+		if c.config.RootCA != nil {
+			store := libssl.SSL_CTX_get_cert_store(c.ctx)
+			if store.Swigcptr() != uintptr(0) {
+				//fmt.Printf("add custom ca\n")
+				ret := libssl.X509_STORE_add_cert(store, c.config.RootCA)
+				if ret < 0 {
+					return fmt.Errorf("add root cert failed %s", GetSslError())
+				}
+			} else {
+				return fmt.Errorf("get cert store failed %s", GetSslError())
+			}
 		}
 	}
 
