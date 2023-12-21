@@ -9,6 +9,8 @@ import (
 	"crypto/sha512"
 	"fmt"
 	"testing"
+
+	"github.com/fangdingjun/openssl/libssl"
 )
 
 func TestMD5(t *testing.T) {
@@ -116,7 +118,7 @@ func TestAesGCM(t *testing.T) {
 	data := make([]byte, 10)
 	//data := []byte("hello")
 
-	cp := EVP_aes_128_gcm()
+	cp := libssl.EVP_aes_128_gcm()
 
 	rand.Reader.Read(key)
 	rand.Reader.Read(iv)

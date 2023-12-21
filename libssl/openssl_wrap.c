@@ -10,7 +10,7 @@
 
 /* source: openssl.i */
 
-#define SWIGMODULE openssl
+#define SWIGMODULE libssl
 /* -----------------------------------------------------------------------------
  *  This section contains generic SWIG labels for method/variable
  *  declarations/attributes, and other compiler dependent labels.
@@ -234,7 +234,7 @@ static void* Swig_malloc(int c) {
 
 
 extern int GoSslVerifyCb(int preverify_ok, uintptr_t x509_ctx);
-int MY_ssl_verify_cb(int preverify_ok, X509_STORE_CTX *x509_ctx){
+int custom_ssl_verify_cb(int preverify_ok, X509_STORE_CTX *x509_ctx){
     return GoSslVerifyCb(preverify_ok, (uintptr_t)(x509_ctx));
 }
 
@@ -246,7 +246,7 @@ extern unsigned int GoSslPskClientCbFunc(SSL *ssl,
                                                unsigned char *psk,
                                                unsigned int max_psk_len);
 
-unsigned int MY_ssl_psk_client_cb_func(SSL *ssl,
+unsigned int custom_ssl_psk_client_cb_func(SSL *ssl,
                                                const char *hint,
                                                char *identity,
                                                unsigned int max_identity_len,
@@ -291,7 +291,7 @@ SSL *my_bio_get_ssl(BIO *b){
 extern "C" {
 #endif
 
-void _wrap_Swig_free_openssl_009154139b29e719(void *_swig_go_0) {
+void _wrap_Swig_free_libssl_cc5c18f307e68e7f(void *_swig_go_0) {
   void *arg1 = (void *) 0 ;
   
   arg1 = *(void **)&_swig_go_0; 
@@ -301,7 +301,7 @@ void _wrap_Swig_free_openssl_009154139b29e719(void *_swig_go_0) {
 }
 
 
-void *_wrap_Swig_malloc_openssl_009154139b29e719(intgo _swig_go_0) {
+void *_wrap_Swig_malloc_libssl_cc5c18f307e68e7f(intgo _swig_go_0) {
   int arg1 ;
   void *result = 0 ;
   void *_swig_go_result;
@@ -314,7 +314,7 @@ void *_wrap_Swig_malloc_openssl_009154139b29e719(intgo _swig_go_0) {
 }
 
 
-void _wrap_SSL_CTX_free_openssl_009154139b29e719(SSL_CTX *_swig_go_0) {
+void _wrap_SSL_CTX_free_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   
   arg1 = *(SSL_CTX **)&_swig_go_0; 
@@ -324,7 +324,7 @@ void _wrap_SSL_CTX_free_openssl_009154139b29e719(SSL_CTX *_swig_go_0) {
 }
 
 
-intgo _wrap_SSL_set_fd_openssl_009154139b29e719(SSL *_swig_go_0, intgo _swig_go_1) {
+intgo _wrap_SSL_set_fd_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, intgo _swig_go_1) {
   SSL *arg1 = (SSL *) 0 ;
   int arg2 ;
   int result;
@@ -339,7 +339,7 @@ intgo _wrap_SSL_set_fd_openssl_009154139b29e719(SSL *_swig_go_0, intgo _swig_go_
 }
 
 
-intgo _wrap_SSL_shutdown_openssl_009154139b29e719(SSL *_swig_go_0) {
+intgo _wrap_SSL_shutdown_libssl_cc5c18f307e68e7f(SSL *_swig_go_0) {
   SSL *arg1 = (SSL *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -352,7 +352,7 @@ intgo _wrap_SSL_shutdown_openssl_009154139b29e719(SSL *_swig_go_0) {
 }
 
 
-void _wrap_SSL_free_openssl_009154139b29e719(SSL *_swig_go_0) {
+void _wrap_SSL_free_libssl_cc5c18f307e68e7f(SSL *_swig_go_0) {
   SSL *arg1 = (SSL *) 0 ;
   
   arg1 = *(SSL **)&_swig_go_0; 
@@ -362,7 +362,7 @@ void _wrap_SSL_free_openssl_009154139b29e719(SSL *_swig_go_0) {
 }
 
 
-intgo _wrap_SSL_accept_openssl_009154139b29e719(SSL *_swig_go_0) {
+intgo _wrap_SSL_accept_libssl_cc5c18f307e68e7f(SSL *_swig_go_0) {
   SSL *arg1 = (SSL *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -375,7 +375,7 @@ intgo _wrap_SSL_accept_openssl_009154139b29e719(SSL *_swig_go_0) {
 }
 
 
-intgo _wrap_SSL_connect_openssl_009154139b29e719(SSL *_swig_go_0) {
+intgo _wrap_SSL_connect_libssl_cc5c18f307e68e7f(SSL *_swig_go_0) {
   SSL *arg1 = (SSL *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -388,19 +388,19 @@ intgo _wrap_SSL_connect_openssl_009154139b29e719(SSL *_swig_go_0) {
 }
 
 
-void* _wrap_MY_ssl_verify_cb_openssl_009154139b29e719() {
+void* _wrap_custom_ssl_verify_cb_libssl_cc5c18f307e68e7f() {
   int (*result)(int,X509_STORE_CTX *) = 0 ;
   void* _swig_go_result;
   
   
-  result = MY_ssl_verify_cb;
+  result = custom_ssl_verify_cb;
   
   *(int (**)(int,X509_STORE_CTX *))&_swig_go_result = (int (*)(int,X509_STORE_CTX *))result; 
   return _swig_go_result;
 }
 
 
-void _wrap_SSL_set_verify_openssl_009154139b29e719(SSL *_swig_go_0, intgo _swig_go_1, void* _swig_go_2) {
+void _wrap_SSL_set_verify_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, intgo _swig_go_1, void* _swig_go_2) {
   SSL *arg1 = (SSL *) 0 ;
   int arg2 ;
   SSL_verify_cb arg3 = (SSL_verify_cb) 0 ;
@@ -414,7 +414,7 @@ void _wrap_SSL_set_verify_openssl_009154139b29e719(SSL *_swig_go_0, intgo _swig_
 }
 
 
-intgo _wrap_SSL_write_openssl_009154139b29e719(SSL *_swig_go_0, _goslice_ _swig_go_1) {
+intgo _wrap_SSL_write_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, _goslice_ _swig_go_1) {
   SSL *arg1 = (SSL *) 0 ;
   void *arg2 = (void *) 0 ;
   int arg3 ;
@@ -433,7 +433,7 @@ intgo _wrap_SSL_write_openssl_009154139b29e719(SSL *_swig_go_0, _goslice_ _swig_
 }
 
 
-intgo _wrap_SSL_do_handshake_openssl_009154139b29e719(SSL *_swig_go_0) {
+intgo _wrap_SSL_do_handshake_libssl_cc5c18f307e68e7f(SSL *_swig_go_0) {
   SSL *arg1 = (SSL *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -446,7 +446,7 @@ intgo _wrap_SSL_do_handshake_openssl_009154139b29e719(SSL *_swig_go_0) {
 }
 
 
-intgo _wrap_SSL_read_openssl_009154139b29e719(SSL *_swig_go_0, _goslice_ _swig_go_1) {
+intgo _wrap_SSL_read_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, _goslice_ _swig_go_1) {
   SSL *arg1 = (SSL *) 0 ;
   void *arg2 = (void *) 0 ;
   int arg3 ;
@@ -479,19 +479,19 @@ intgo _wrap_SSL_read_openssl_009154139b29e719(SSL *_swig_go_0, _goslice_ _swig_g
 }
 
 
-void* _wrap_MY_ssl_psk_client_cb_func_openssl_009154139b29e719() {
+void* _wrap_custom_ssl_psk_client_cb_func_libssl_cc5c18f307e68e7f() {
   unsigned int (*result)(SSL *,char const *,char *,unsigned int,unsigned char *,unsigned int) = 0 ;
   void* _swig_go_result;
   
   
-  result = MY_ssl_psk_client_cb_func;
+  result = custom_ssl_psk_client_cb_func;
   
   *(unsigned int (**)(SSL *,char const *,char *,unsigned int,unsigned char *,unsigned int))&_swig_go_result = (unsigned int (*)(SSL *,char const *,char *,unsigned int,unsigned char *,unsigned int))result; 
   return _swig_go_result;
 }
 
 
-void _wrap_SSL_CTX_set_psk_client_callback_openssl_009154139b29e719(SSL_CTX *_swig_go_0, SSL_psk_client_cb_func *_swig_go_1) {
+void _wrap_SSL_CTX_set_psk_client_callback_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0, SSL_psk_client_cb_func *_swig_go_1) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   SSL_psk_client_cb_func arg2 ;
   SSL_psk_client_cb_func *argp2 ;
@@ -510,7 +510,7 @@ void _wrap_SSL_CTX_set_psk_client_callback_openssl_009154139b29e719(SSL_CTX *_sw
 }
 
 
-void _wrap_SSL_set_psk_client_callback_openssl_009154139b29e719(SSL *_swig_go_0, SSL_psk_client_cb_func *_swig_go_1) {
+void _wrap_SSL_set_psk_client_callback_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, SSL_psk_client_cb_func *_swig_go_1) {
   SSL *arg1 = (SSL *) 0 ;
   SSL_psk_client_cb_func arg2 ;
   SSL_psk_client_cb_func *argp2 ;
@@ -529,7 +529,7 @@ void _wrap_SSL_set_psk_client_callback_openssl_009154139b29e719(SSL *_swig_go_0,
 }
 
 
-X509 *_wrap_SSL_CTX_get0_certificate_openssl_009154139b29e719(SSL_CTX *_swig_go_0) {
+X509 *_wrap_SSL_CTX_get0_certificate_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   X509 *result = 0 ;
   X509 *_swig_go_result;
@@ -542,7 +542,7 @@ X509 *_wrap_SSL_CTX_get0_certificate_openssl_009154139b29e719(SSL_CTX *_swig_go_
 }
 
 
-EVP_PKEY *_wrap_SSL_CTX_get0_privatekey_openssl_009154139b29e719(SSL_CTX *_swig_go_0) {
+EVP_PKEY *_wrap_SSL_CTX_get0_privatekey_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   EVP_PKEY *result = 0 ;
   EVP_PKEY *_swig_go_result;
@@ -555,7 +555,7 @@ EVP_PKEY *_wrap_SSL_CTX_get0_privatekey_openssl_009154139b29e719(SSL_CTX *_swig_
 }
 
 
-void _wrap_SSL_set_connect_state_openssl_009154139b29e719(SSL *_swig_go_0) {
+void _wrap_SSL_set_connect_state_libssl_cc5c18f307e68e7f(SSL *_swig_go_0) {
   SSL *arg1 = (SSL *) 0 ;
   
   arg1 = *(SSL **)&_swig_go_0; 
@@ -565,7 +565,7 @@ void _wrap_SSL_set_connect_state_openssl_009154139b29e719(SSL *_swig_go_0) {
 }
 
 
-void _wrap_SSL_set_accept_state_openssl_009154139b29e719(SSL *_swig_go_0) {
+void _wrap_SSL_set_accept_state_libssl_cc5c18f307e68e7f(SSL *_swig_go_0) {
   SSL *arg1 = (SSL *) 0 ;
   
   arg1 = *(SSL **)&_swig_go_0; 
@@ -575,7 +575,7 @@ void _wrap_SSL_set_accept_state_openssl_009154139b29e719(SSL *_swig_go_0) {
 }
 
 
-intgo _wrap_SSL_get_error_openssl_009154139b29e719(SSL *_swig_go_0, intgo _swig_go_1) {
+intgo _wrap_SSL_get_error_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, intgo _swig_go_1) {
   SSL *arg1 = (SSL *) 0 ;
   int arg2 ;
   int result;
@@ -590,7 +590,7 @@ intgo _wrap_SSL_get_error_openssl_009154139b29e719(SSL *_swig_go_0, intgo _swig_
 }
 
 
-SSL *_wrap_SSL_new_openssl_009154139b29e719(SSL_CTX *_swig_go_0) {
+SSL *_wrap_SSL_new_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   SSL *result = 0 ;
   SSL *_swig_go_result;
@@ -603,7 +603,7 @@ SSL *_wrap_SSL_new_openssl_009154139b29e719(SSL_CTX *_swig_go_0) {
 }
 
 
-void _wrap_SSL_set_bio_openssl_009154139b29e719(SSL *_swig_go_0, BIO *_swig_go_1, BIO *_swig_go_2) {
+void _wrap_SSL_set_bio_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, BIO *_swig_go_1, BIO *_swig_go_2) {
   SSL *arg1 = (SSL *) 0 ;
   BIO *arg2 = (BIO *) 0 ;
   BIO *arg3 = (BIO *) 0 ;
@@ -617,7 +617,7 @@ void _wrap_SSL_set_bio_openssl_009154139b29e719(SSL *_swig_go_0, BIO *_swig_go_1
 }
 
 
-SSL_CTX *_wrap_SSL_CTX_new_openssl_009154139b29e719(SSL_METHOD *_swig_go_0) {
+SSL_CTX *_wrap_SSL_CTX_new_libssl_cc5c18f307e68e7f(SSL_METHOD *_swig_go_0) {
   SSL_METHOD *arg1 = (SSL_METHOD *) 0 ;
   SSL_CTX *result = 0 ;
   SSL_CTX *_swig_go_result;
@@ -630,7 +630,7 @@ SSL_CTX *_wrap_SSL_CTX_new_openssl_009154139b29e719(SSL_METHOD *_swig_go_0) {
 }
 
 
-SSL_METHOD *_wrap_TLS_method_openssl_009154139b29e719() {
+SSL_METHOD *_wrap_TLS_method_libssl_cc5c18f307e68e7f() {
   SSL_METHOD *result = 0 ;
   SSL_METHOD *_swig_go_result;
   
@@ -641,7 +641,7 @@ SSL_METHOD *_wrap_TLS_method_openssl_009154139b29e719() {
 }
 
 
-SSL_METHOD *_wrap_TLS_server_method_openssl_009154139b29e719() {
+SSL_METHOD *_wrap_TLS_server_method_libssl_cc5c18f307e68e7f() {
   SSL_METHOD *result = 0 ;
   SSL_METHOD *_swig_go_result;
   
@@ -652,7 +652,7 @@ SSL_METHOD *_wrap_TLS_server_method_openssl_009154139b29e719() {
 }
 
 
-SSL_METHOD *_wrap_TLS_client_method_openssl_009154139b29e719() {
+SSL_METHOD *_wrap_TLS_client_method_libssl_cc5c18f307e68e7f() {
   SSL_METHOD *result = 0 ;
   SSL_METHOD *_swig_go_result;
   
@@ -663,7 +663,7 @@ SSL_METHOD *_wrap_TLS_client_method_openssl_009154139b29e719() {
 }
 
 
-SSL_METHOD *_wrap_DTLS_method_openssl_009154139b29e719() {
+SSL_METHOD *_wrap_DTLS_method_libssl_cc5c18f307e68e7f() {
   SSL_METHOD *result = 0 ;
   SSL_METHOD *_swig_go_result;
   
@@ -674,7 +674,7 @@ SSL_METHOD *_wrap_DTLS_method_openssl_009154139b29e719() {
 }
 
 
-SSL_METHOD *_wrap_DTLS_server_method_openssl_009154139b29e719() {
+SSL_METHOD *_wrap_DTLS_server_method_libssl_cc5c18f307e68e7f() {
   SSL_METHOD *result = 0 ;
   SSL_METHOD *_swig_go_result;
   
@@ -685,7 +685,7 @@ SSL_METHOD *_wrap_DTLS_server_method_openssl_009154139b29e719() {
 }
 
 
-SSL_METHOD *_wrap_DTLS_client_method_openssl_009154139b29e719() {
+SSL_METHOD *_wrap_DTLS_client_method_libssl_cc5c18f307e68e7f() {
   SSL_METHOD *result = 0 ;
   SSL_METHOD *_swig_go_result;
   
@@ -696,7 +696,7 @@ SSL_METHOD *_wrap_DTLS_client_method_openssl_009154139b29e719() {
 }
 
 
-intgo _wrap_SSL_CTX_use_certificate_openssl_009154139b29e719(SSL_CTX *_swig_go_0, X509 *_swig_go_1) {
+intgo _wrap_SSL_CTX_use_certificate_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0, X509 *_swig_go_1) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   X509 *arg2 = (X509 *) 0 ;
   int result;
@@ -711,7 +711,7 @@ intgo _wrap_SSL_CTX_use_certificate_openssl_009154139b29e719(SSL_CTX *_swig_go_0
 }
 
 
-intgo _wrap_SSL_use_certificate_openssl_009154139b29e719(SSL *_swig_go_0, X509 *_swig_go_1) {
+intgo _wrap_SSL_use_certificate_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, X509 *_swig_go_1) {
   SSL *arg1 = (SSL *) 0 ;
   X509 *arg2 = (X509 *) 0 ;
   int result;
@@ -726,7 +726,7 @@ intgo _wrap_SSL_use_certificate_openssl_009154139b29e719(SSL *_swig_go_0, X509 *
 }
 
 
-intgo _wrap_SSL_use_certificate_file_openssl_009154139b29e719(SSL *_swig_go_0, _gostring_ _swig_go_1, intgo _swig_go_2) {
+intgo _wrap_SSL_use_certificate_file_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, _gostring_ _swig_go_1, intgo _swig_go_2) {
   SSL *arg1 = (SSL *) 0 ;
   char *arg2 = (char *) 0 ;
   int arg3 ;
@@ -748,7 +748,7 @@ intgo _wrap_SSL_use_certificate_file_openssl_009154139b29e719(SSL *_swig_go_0, _
 }
 
 
-intgo _wrap_SSL_CTX_use_certificate_chain_file_openssl_009154139b29e719(SSL_CTX *_swig_go_0, _gostring_ _swig_go_1) {
+intgo _wrap_SSL_CTX_use_certificate_chain_file_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0, _gostring_ _swig_go_1) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   char *arg2 = (char *) 0 ;
   int result;
@@ -768,7 +768,7 @@ intgo _wrap_SSL_CTX_use_certificate_chain_file_openssl_009154139b29e719(SSL_CTX 
 }
 
 
-intgo _wrap_SSL_use_certificate_chain_file_openssl_009154139b29e719(SSL *_swig_go_0, _gostring_ _swig_go_1) {
+intgo _wrap_SSL_use_certificate_chain_file_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, _gostring_ _swig_go_1) {
   SSL *arg1 = (SSL *) 0 ;
   char *arg2 = (char *) 0 ;
   int result;
@@ -788,7 +788,7 @@ intgo _wrap_SSL_use_certificate_chain_file_openssl_009154139b29e719(SSL *_swig_g
 }
 
 
-intgo _wrap_SSL_CTX_use_PrivateKey_openssl_009154139b29e719(SSL_CTX *_swig_go_0, EVP_PKEY *_swig_go_1) {
+intgo _wrap_SSL_CTX_use_PrivateKey_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0, EVP_PKEY *_swig_go_1) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   EVP_PKEY *arg2 = (EVP_PKEY *) 0 ;
   int result;
@@ -803,7 +803,7 @@ intgo _wrap_SSL_CTX_use_PrivateKey_openssl_009154139b29e719(SSL_CTX *_swig_go_0,
 }
 
 
-intgo _wrap_SSL_CTX_use_PrivateKey_file_openssl_009154139b29e719(SSL_CTX *_swig_go_0, _gostring_ _swig_go_1, intgo _swig_go_2) {
+intgo _wrap_SSL_CTX_use_PrivateKey_file_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0, _gostring_ _swig_go_1, intgo _swig_go_2) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   char *arg2 = (char *) 0 ;
   int arg3 ;
@@ -825,7 +825,7 @@ intgo _wrap_SSL_CTX_use_PrivateKey_file_openssl_009154139b29e719(SSL_CTX *_swig_
 }
 
 
-intgo _wrap_SSL_use_PrivateKey_openssl_009154139b29e719(SSL *_swig_go_0, EVP_PKEY *_swig_go_1) {
+intgo _wrap_SSL_use_PrivateKey_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, EVP_PKEY *_swig_go_1) {
   SSL *arg1 = (SSL *) 0 ;
   EVP_PKEY *arg2 = (EVP_PKEY *) 0 ;
   int result;
@@ -840,7 +840,7 @@ intgo _wrap_SSL_use_PrivateKey_openssl_009154139b29e719(SSL *_swig_go_0, EVP_PKE
 }
 
 
-intgo _wrap_SSL_set_tlsext_host_name_openssl_009154139b29e719(SSL *_swig_go_0, _gostring_ _swig_go_1) {
+intgo _wrap_SSL_set_tlsext_host_name_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, _gostring_ _swig_go_1) {
   SSL *arg1 = (SSL *) 0 ;
   char *arg2 = (char *) 0 ;
   int result;
@@ -860,7 +860,7 @@ intgo _wrap_SSL_set_tlsext_host_name_openssl_009154139b29e719(SSL *_swig_go_0, _
 }
 
 
-intgo _wrap_SSL_CTX_load_verify_locations_openssl_009154139b29e719(SSL_CTX *_swig_go_0, _gostring_ _swig_go_1, _gostring_ _swig_go_2) {
+intgo _wrap_SSL_CTX_load_verify_locations_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0, _gostring_ _swig_go_1, _gostring_ _swig_go_2) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   char *arg2 = (char *) 0 ;
   char *arg3 = (char *) 0 ;
@@ -887,7 +887,7 @@ intgo _wrap_SSL_CTX_load_verify_locations_openssl_009154139b29e719(SSL_CTX *_swi
 }
 
 
-intgo _wrap_SSL_CTX_set_default_verify_paths_openssl_009154139b29e719(SSL_CTX *_swig_go_0) {
+intgo _wrap_SSL_CTX_set_default_verify_paths_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -900,7 +900,7 @@ intgo _wrap_SSL_CTX_set_default_verify_paths_openssl_009154139b29e719(SSL_CTX *_
 }
 
 
-intgo _wrap_SSL_want_read_openssl_009154139b29e719(SSL *_swig_go_0) {
+intgo _wrap_SSL_want_read_libssl_cc5c18f307e68e7f(SSL *_swig_go_0) {
   SSL *arg1 = (SSL *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -913,7 +913,7 @@ intgo _wrap_SSL_want_read_openssl_009154139b29e719(SSL *_swig_go_0) {
 }
 
 
-intgo _wrap_SSL_want_write_openssl_009154139b29e719(SSL *_swig_go_0) {
+intgo _wrap_SSL_want_write_libssl_cc5c18f307e68e7f(SSL *_swig_go_0) {
   SSL *arg1 = (SSL *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -926,7 +926,7 @@ intgo _wrap_SSL_want_write_openssl_009154139b29e719(SSL *_swig_go_0) {
 }
 
 
-intgo _wrap_SSL_CTX_set_alpn_protos_openssl_009154139b29e719(SSL_CTX *_swig_go_0, _goslice_ _swig_go_1) {
+intgo _wrap_SSL_CTX_set_alpn_protos_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0, _goslice_ _swig_go_1) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   unsigned char *arg2 = (unsigned char *) 0 ;
   unsigned int arg3 ;
@@ -945,7 +945,7 @@ intgo _wrap_SSL_CTX_set_alpn_protos_openssl_009154139b29e719(SSL_CTX *_swig_go_0
 }
 
 
-intgo _wrap_SSL_set_alpn_protos_openssl_009154139b29e719(SSL *_swig_go_0, _goslice_ _swig_go_1) {
+intgo _wrap_SSL_set_alpn_protos_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, _goslice_ _swig_go_1) {
   SSL *arg1 = (SSL *) 0 ;
   unsigned char *arg2 = (unsigned char *) 0 ;
   unsigned int arg3 ;
@@ -964,7 +964,7 @@ intgo _wrap_SSL_set_alpn_protos_openssl_009154139b29e719(SSL *_swig_go_0, _gosli
 }
 
 
-_gostring_ _wrap_SSL_get_alpn_selected_openssl_009154139b29e719(SSL *_swig_go_0) {
+_gostring_ _wrap_SSL_get_alpn_selected_libssl_cc5c18f307e68e7f(SSL *_swig_go_0) {
   SSL *arg1 = (SSL *) 0 ;
   char *result = 0 ;
   _gostring_ _swig_go_result;
@@ -977,7 +977,7 @@ _gostring_ _wrap_SSL_get_alpn_selected_openssl_009154139b29e719(SSL *_swig_go_0)
 }
 
 
-void *_wrap_SSL_CTX_get_ex_data_openssl_009154139b29e719(SSL_CTX *_swig_go_0, intgo _swig_go_1) {
+void *_wrap_SSL_CTX_get_ex_data_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0, intgo _swig_go_1) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   int arg2 ;
   void *result = 0 ;
@@ -992,7 +992,7 @@ void *_wrap_SSL_CTX_get_ex_data_openssl_009154139b29e719(SSL_CTX *_swig_go_0, in
 }
 
 
-intgo _wrap_SSL_CTX_set_ex_data_openssl_009154139b29e719(SSL_CTX *_swig_go_0, intgo _swig_go_1, void *_swig_go_2) {
+intgo _wrap_SSL_CTX_set_ex_data_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0, intgo _swig_go_1, void *_swig_go_2) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   int arg2 ;
   void *arg3 = (void *) 0 ;
@@ -1009,7 +1009,7 @@ intgo _wrap_SSL_CTX_set_ex_data_openssl_009154139b29e719(SSL_CTX *_swig_go_0, in
 }
 
 
-void *_wrap_SSL_get_ex_data_openssl_009154139b29e719(SSL *_swig_go_0, intgo _swig_go_1) {
+void *_wrap_SSL_get_ex_data_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, intgo _swig_go_1) {
   SSL *arg1 = (SSL *) 0 ;
   int arg2 ;
   void *result = 0 ;
@@ -1024,7 +1024,7 @@ void *_wrap_SSL_get_ex_data_openssl_009154139b29e719(SSL *_swig_go_0, intgo _swi
 }
 
 
-intgo _wrap_SSL_set_ex_data_openssl_009154139b29e719(SSL *_swig_go_0, intgo _swig_go_1, void *_swig_go_2) {
+intgo _wrap_SSL_set_ex_data_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, intgo _swig_go_1, void *_swig_go_2) {
   SSL *arg1 = (SSL *) 0 ;
   int arg2 ;
   void *arg3 = (void *) 0 ;
@@ -1041,7 +1041,7 @@ intgo _wrap_SSL_set_ex_data_openssl_009154139b29e719(SSL *_swig_go_0, intgo _swi
 }
 
 
-void _wrap_ERR_print_errors_openssl_009154139b29e719(BIO *_swig_go_0) {
+void _wrap_ERR_print_errors_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   
   arg1 = *(BIO **)&_swig_go_0; 
@@ -1051,7 +1051,7 @@ void _wrap_ERR_print_errors_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-void _wrap_SSL_CTX_set_verify_openssl_009154139b29e719(SSL_CTX *_swig_go_0, intgo _swig_go_1, void* _swig_go_2) {
+void _wrap_SSL_CTX_set_verify_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0, intgo _swig_go_1, void* _swig_go_2) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   int arg2 ;
   SSL_verify_cb arg3 = (SSL_verify_cb) 0 ;
@@ -1065,7 +1065,7 @@ void _wrap_SSL_CTX_set_verify_openssl_009154139b29e719(SSL_CTX *_swig_go_0, intg
 }
 
 
-intgo _wrap_SSL_get_ex_data_X509_STORE_CTX_idx_openssl_009154139b29e719() {
+intgo _wrap_SSL_get_ex_data_X509_STORE_CTX_idx_libssl_cc5c18f307e68e7f() {
   int result;
   intgo _swig_go_result;
   
@@ -1076,7 +1076,7 @@ intgo _wrap_SSL_get_ex_data_X509_STORE_CTX_idx_openssl_009154139b29e719() {
 }
 
 
-void _wrap_SSL_CTX_set_verify_depth_openssl_009154139b29e719(SSL_CTX *_swig_go_0, intgo _swig_go_1) {
+void _wrap_SSL_CTX_set_verify_depth_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0, intgo _swig_go_1) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   int arg2 ;
   
@@ -1088,7 +1088,7 @@ void _wrap_SSL_CTX_set_verify_depth_openssl_009154139b29e719(SSL_CTX *_swig_go_0
 }
 
 
-void _wrap_SSL_set_verify_depth_openssl_009154139b29e719(SSL *_swig_go_0, intgo _swig_go_1) {
+void _wrap_SSL_set_verify_depth_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, intgo _swig_go_1) {
   SSL *arg1 = (SSL *) 0 ;
   int arg2 ;
   
@@ -1100,7 +1100,7 @@ void _wrap_SSL_set_verify_depth_openssl_009154139b29e719(SSL *_swig_go_0, intgo 
 }
 
 
-X509 *_wrap_SSL_get_peer_certificate_openssl_009154139b29e719(SSL *_swig_go_0) {
+X509 *_wrap_SSL_get_peer_certificate_libssl_cc5c18f307e68e7f(SSL *_swig_go_0) {
   SSL *arg1 = (SSL *) 0 ;
   X509 *result = 0 ;
   X509 *_swig_go_result;
@@ -1113,7 +1113,7 @@ X509 *_wrap_SSL_get_peer_certificate_openssl_009154139b29e719(SSL *_swig_go_0) {
 }
 
 
-X509_STORE *_wrap_SSL_CTX_get_cert_store_openssl_009154139b29e719(SSL_CTX *_swig_go_0) {
+X509_STORE *_wrap_SSL_CTX_get_cert_store_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   X509_STORE *result = 0 ;
   X509_STORE *_swig_go_result;
@@ -1126,7 +1126,7 @@ X509_STORE *_wrap_SSL_CTX_get_cert_store_openssl_009154139b29e719(SSL_CTX *_swig
 }
 
 
-BIO_METHOD *_wrap_BIO_f_base64_openssl_009154139b29e719() {
+BIO_METHOD *_wrap_BIO_f_base64_libssl_cc5c18f307e68e7f() {
   BIO_METHOD *result = 0 ;
   BIO_METHOD *_swig_go_result;
   
@@ -1137,7 +1137,7 @@ BIO_METHOD *_wrap_BIO_f_base64_openssl_009154139b29e719() {
 }
 
 
-BIO_METHOD *_wrap_BIO_f_buffer_openssl_009154139b29e719() {
+BIO_METHOD *_wrap_BIO_f_buffer_libssl_cc5c18f307e68e7f() {
   BIO_METHOD *result = 0 ;
   BIO_METHOD *_swig_go_result;
   
@@ -1148,7 +1148,7 @@ BIO_METHOD *_wrap_BIO_f_buffer_openssl_009154139b29e719() {
 }
 
 
-BIO_METHOD *_wrap_BIO_f_cipher_openssl_009154139b29e719() {
+BIO_METHOD *_wrap_BIO_f_cipher_libssl_cc5c18f307e68e7f() {
   BIO_METHOD *result = 0 ;
   BIO_METHOD *_swig_go_result;
   
@@ -1159,7 +1159,7 @@ BIO_METHOD *_wrap_BIO_f_cipher_openssl_009154139b29e719() {
 }
 
 
-intgo _wrap_BIO_set_cipher_openssl_009154139b29e719(BIO *_swig_go_0, EVP_CIPHER *_swig_go_1, _goslice_ _swig_go_2, _goslice_ _swig_go_3, intgo _swig_go_4) {
+intgo _wrap_BIO_set_cipher_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, EVP_CIPHER *_swig_go_1, _goslice_ _swig_go_2, _goslice_ _swig_go_3, intgo _swig_go_4) {
   BIO *arg1 = (BIO *) 0 ;
   EVP_CIPHER *arg2 = (EVP_CIPHER *) 0 ;
   unsigned char *arg3 = (unsigned char *) 0 ;
@@ -1184,7 +1184,7 @@ intgo _wrap_BIO_set_cipher_openssl_009154139b29e719(BIO *_swig_go_0, EVP_CIPHER 
 }
 
 
-BIO_METHOD *_wrap_BIO_f_md_openssl_009154139b29e719() {
+BIO_METHOD *_wrap_BIO_f_md_libssl_cc5c18f307e68e7f() {
   BIO_METHOD *result = 0 ;
   BIO_METHOD *_swig_go_result;
   
@@ -1195,7 +1195,7 @@ BIO_METHOD *_wrap_BIO_f_md_openssl_009154139b29e719() {
 }
 
 
-intgo _wrap_BIO_set_md_openssl_009154139b29e719(BIO *_swig_go_0, EVP_MD *_swig_go_1) {
+intgo _wrap_BIO_set_md_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, EVP_MD *_swig_go_1) {
   BIO *arg1 = (BIO *) 0 ;
   EVP_MD *arg2 = (EVP_MD *) 0 ;
   int result;
@@ -1210,7 +1210,7 @@ intgo _wrap_BIO_set_md_openssl_009154139b29e719(BIO *_swig_go_0, EVP_MD *_swig_g
 }
 
 
-BIO_METHOD *_wrap_BIO_f_null_openssl_009154139b29e719() {
+BIO_METHOD *_wrap_BIO_f_null_libssl_cc5c18f307e68e7f() {
   BIO_METHOD *result = 0 ;
   BIO_METHOD *_swig_go_result;
   
@@ -1221,7 +1221,7 @@ BIO_METHOD *_wrap_BIO_f_null_openssl_009154139b29e719() {
 }
 
 
-BIO_METHOD *_wrap_BIO_f_ssl_openssl_009154139b29e719() {
+BIO_METHOD *_wrap_BIO_f_ssl_libssl_cc5c18f307e68e7f() {
   BIO_METHOD *result = 0 ;
   BIO_METHOD *_swig_go_result;
   
@@ -1232,7 +1232,7 @@ BIO_METHOD *_wrap_BIO_f_ssl_openssl_009154139b29e719() {
 }
 
 
-SSL *_wrap_BIO_get_ssl_openssl_009154139b29e719(BIO *_swig_go_0) {
+SSL *_wrap_BIO_get_ssl_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   SSL *result = 0 ;
   SSL *_swig_go_result;
@@ -1245,7 +1245,7 @@ SSL *_wrap_BIO_get_ssl_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-BIO *_wrap_BIO_new_openssl_009154139b29e719(BIO_METHOD *_swig_go_0) {
+BIO *_wrap_BIO_new_libssl_cc5c18f307e68e7f(BIO_METHOD *_swig_go_0) {
   BIO_METHOD *arg1 = (BIO_METHOD *) 0 ;
   BIO *result = 0 ;
   BIO *_swig_go_result;
@@ -1258,7 +1258,7 @@ BIO *_wrap_BIO_new_openssl_009154139b29e719(BIO_METHOD *_swig_go_0) {
 }
 
 
-intgo _wrap_BIO_free_openssl_009154139b29e719(BIO *_swig_go_0) {
+intgo _wrap_BIO_free_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -1271,7 +1271,7 @@ intgo _wrap_BIO_free_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-void _wrap_BIO_free_all_openssl_009154139b29e719(BIO *_swig_go_0) {
+void _wrap_BIO_free_all_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   
   arg1 = *(BIO **)&_swig_go_0; 
@@ -1281,7 +1281,7 @@ void _wrap_BIO_free_all_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-BIO *_wrap_BIO_push_openssl_009154139b29e719(BIO *_swig_go_0, BIO *_swig_go_1) {
+BIO *_wrap_BIO_push_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, BIO *_swig_go_1) {
   BIO *arg1 = (BIO *) 0 ;
   BIO *arg2 = (BIO *) 0 ;
   BIO *result = 0 ;
@@ -1296,7 +1296,7 @@ BIO *_wrap_BIO_push_openssl_009154139b29e719(BIO *_swig_go_0, BIO *_swig_go_1) {
 }
 
 
-BIO *_wrap_BIO_new_ssl_openssl_009154139b29e719(SSL_CTX *_swig_go_0, intgo _swig_go_1) {
+BIO *_wrap_BIO_new_ssl_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0, intgo _swig_go_1) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   int arg2 ;
   BIO *result = 0 ;
@@ -1311,7 +1311,7 @@ BIO *_wrap_BIO_new_ssl_openssl_009154139b29e719(SSL_CTX *_swig_go_0, intgo _swig
 }
 
 
-BIO *_wrap_BIO_new_ssl_connect_openssl_009154139b29e719(SSL_CTX *_swig_go_0) {
+BIO *_wrap_BIO_new_ssl_connect_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
   BIO *result = 0 ;
   BIO *_swig_go_result;
@@ -1324,7 +1324,7 @@ BIO *_wrap_BIO_new_ssl_connect_openssl_009154139b29e719(SSL_CTX *_swig_go_0) {
 }
 
 
-void _wrap_BIO_ssl_shutdown_openssl_009154139b29e719(BIO *_swig_go_0) {
+void _wrap_BIO_ssl_shutdown_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   
   arg1 = *(BIO **)&_swig_go_0; 
@@ -1334,7 +1334,7 @@ void _wrap_BIO_ssl_shutdown_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-BIO_METHOD *_wrap_BIO_s_accept_openssl_009154139b29e719() {
+BIO_METHOD *_wrap_BIO_s_accept_libssl_cc5c18f307e68e7f() {
   BIO_METHOD *result = 0 ;
   BIO_METHOD *_swig_go_result;
   
@@ -1345,7 +1345,7 @@ BIO_METHOD *_wrap_BIO_s_accept_openssl_009154139b29e719() {
 }
 
 
-BIO *_wrap_BIO_new_accept_openssl_009154139b29e719(_gostring_ _swig_go_0) {
+BIO *_wrap_BIO_new_accept_libssl_cc5c18f307e68e7f(_gostring_ _swig_go_0) {
   char *arg1 = (char *) 0 ;
   BIO *result = 0 ;
   BIO *_swig_go_result;
@@ -1363,7 +1363,7 @@ BIO *_wrap_BIO_new_accept_openssl_009154139b29e719(_gostring_ _swig_go_0) {
 }
 
 
-intgo _wrap_BIO_do_accept_openssl_009154139b29e719(BIO *_swig_go_0) {
+intgo _wrap_BIO_do_accept_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -1376,7 +1376,7 @@ intgo _wrap_BIO_do_accept_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-long long _wrap_BIO_do_handshake_openssl_009154139b29e719(BIO *_swig_go_0) {
+long long _wrap_BIO_do_handshake_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   long result;
   long long _swig_go_result;
@@ -1389,7 +1389,7 @@ long long _wrap_BIO_do_handshake_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-intgo _wrap_BIO_write_openssl_009154139b29e719(BIO *_swig_go_0, _goslice_ _swig_go_1) {
+intgo _wrap_BIO_write_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, _goslice_ _swig_go_1) {
   BIO *arg1 = (BIO *) 0 ;
   void *arg2 = (void *) 0 ;
   int arg3 ;
@@ -1408,7 +1408,7 @@ intgo _wrap_BIO_write_openssl_009154139b29e719(BIO *_swig_go_0, _goslice_ _swig_
 }
 
 
-intgo _wrap_BIO_read_openssl_009154139b29e719(BIO *_swig_go_0, _goslice_ _swig_go_1) {
+intgo _wrap_BIO_read_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, _goslice_ _swig_go_1) {
   BIO *arg1 = (BIO *) 0 ;
   void *arg2 = (void *) 0 ;
   int arg3 ;
@@ -1441,7 +1441,7 @@ intgo _wrap_BIO_read_openssl_009154139b29e719(BIO *_swig_go_0, _goslice_ _swig_g
 }
 
 
-BIO_METHOD *_wrap_BIO_s_connect_openssl_009154139b29e719() {
+BIO_METHOD *_wrap_BIO_s_connect_libssl_cc5c18f307e68e7f() {
   BIO_METHOD *result = 0 ;
   BIO_METHOD *_swig_go_result;
   
@@ -1452,7 +1452,7 @@ BIO_METHOD *_wrap_BIO_s_connect_openssl_009154139b29e719() {
 }
 
 
-BIO *_wrap_BIO_new_connect_openssl_009154139b29e719(_gostring_ _swig_go_0) {
+BIO *_wrap_BIO_new_connect_libssl_cc5c18f307e68e7f(_gostring_ _swig_go_0) {
   char *arg1 = (char *) 0 ;
   BIO *result = 0 ;
   BIO *_swig_go_result;
@@ -1470,7 +1470,7 @@ BIO *_wrap_BIO_new_connect_openssl_009154139b29e719(_gostring_ _swig_go_0) {
 }
 
 
-long long _wrap_BIO_set_conn_hostname_openssl_009154139b29e719(BIO *_swig_go_0, _gostring_ _swig_go_1) {
+long long _wrap_BIO_set_conn_hostname_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, _gostring_ _swig_go_1) {
   BIO *arg1 = (BIO *) 0 ;
   char *arg2 = (char *) 0 ;
   long result;
@@ -1490,7 +1490,7 @@ long long _wrap_BIO_set_conn_hostname_openssl_009154139b29e719(BIO *_swig_go_0, 
 }
 
 
-long long _wrap_BIO_do_connect_openssl_009154139b29e719(BIO *_swig_go_0) {
+long long _wrap_BIO_do_connect_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   long result;
   long long _swig_go_result;
@@ -1503,7 +1503,7 @@ long long _wrap_BIO_do_connect_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-BIO_METHOD *_wrap_BIO_s_fd_openssl_009154139b29e719() {
+BIO_METHOD *_wrap_BIO_s_fd_libssl_cc5c18f307e68e7f() {
   BIO_METHOD *result = 0 ;
   BIO_METHOD *_swig_go_result;
   
@@ -1514,7 +1514,7 @@ BIO_METHOD *_wrap_BIO_s_fd_openssl_009154139b29e719() {
 }
 
 
-intgo _wrap_BIO_set_fd_openssl_009154139b29e719(BIO *_swig_go_0, intgo _swig_go_1, intgo _swig_go_2) {
+intgo _wrap_BIO_set_fd_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, intgo _swig_go_1, intgo _swig_go_2) {
   BIO *arg1 = (BIO *) 0 ;
   int arg2 ;
   int arg3 ;
@@ -1531,7 +1531,7 @@ intgo _wrap_BIO_set_fd_openssl_009154139b29e719(BIO *_swig_go_0, intgo _swig_go_
 }
 
 
-BIO *_wrap_BIO_new_fd_openssl_009154139b29e719(intgo _swig_go_0, intgo _swig_go_1) {
+BIO *_wrap_BIO_new_fd_libssl_cc5c18f307e68e7f(intgo _swig_go_0, intgo _swig_go_1) {
   int arg1 ;
   int arg2 ;
   BIO *result = 0 ;
@@ -1546,7 +1546,7 @@ BIO *_wrap_BIO_new_fd_openssl_009154139b29e719(intgo _swig_go_0, intgo _swig_go_
 }
 
 
-BIO *_wrap_BIO_new_file_openssl_009154139b29e719(_gostring_ _swig_go_0, _gostring_ _swig_go_1) {
+BIO *_wrap_BIO_new_file_libssl_cc5c18f307e68e7f(_gostring_ _swig_go_0, _gostring_ _swig_go_1) {
   char *arg1 = (char *) 0 ;
   char *arg2 = (char *) 0 ;
   BIO *result = 0 ;
@@ -1571,7 +1571,7 @@ BIO *_wrap_BIO_new_file_openssl_009154139b29e719(_gostring_ _swig_go_0, _gostrin
 }
 
 
-BIO_METHOD *_wrap_BIO_s_mem_openssl_009154139b29e719() {
+BIO_METHOD *_wrap_BIO_s_mem_libssl_cc5c18f307e68e7f() {
   BIO_METHOD *result = 0 ;
   BIO_METHOD *_swig_go_result;
   
@@ -1582,7 +1582,7 @@ BIO_METHOD *_wrap_BIO_s_mem_openssl_009154139b29e719() {
 }
 
 
-BIO_METHOD *_wrap_BIO_s_null_openssl_009154139b29e719() {
+BIO_METHOD *_wrap_BIO_s_null_libssl_cc5c18f307e68e7f() {
   BIO_METHOD *result = 0 ;
   BIO_METHOD *_swig_go_result;
   
@@ -1593,7 +1593,7 @@ BIO_METHOD *_wrap_BIO_s_null_openssl_009154139b29e719() {
 }
 
 
-BIO_METHOD *_wrap_BIO_s_socket_openssl_009154139b29e719() {
+BIO_METHOD *_wrap_BIO_s_socket_libssl_cc5c18f307e68e7f() {
   BIO_METHOD *result = 0 ;
   BIO_METHOD *_swig_go_result;
   
@@ -1604,7 +1604,7 @@ BIO_METHOD *_wrap_BIO_s_socket_openssl_009154139b29e719() {
 }
 
 
-BIO *_wrap_BIO_new_socket_openssl_009154139b29e719(intgo _swig_go_0, intgo _swig_go_1) {
+BIO *_wrap_BIO_new_socket_libssl_cc5c18f307e68e7f(intgo _swig_go_0, intgo _swig_go_1) {
   int arg1 ;
   int arg2 ;
   BIO *result = 0 ;
@@ -1619,7 +1619,7 @@ BIO *_wrap_BIO_new_socket_openssl_009154139b29e719(intgo _swig_go_0, intgo _swig
 }
 
 
-intgo _wrap_BIO_should_read_openssl_009154139b29e719(BIO *_swig_go_0) {
+intgo _wrap_BIO_should_read_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -1632,7 +1632,7 @@ intgo _wrap_BIO_should_read_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-intgo _wrap_BIO_should_write_openssl_009154139b29e719(BIO *_swig_go_0) {
+intgo _wrap_BIO_should_write_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -1645,7 +1645,7 @@ intgo _wrap_BIO_should_write_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-intgo _wrap_BIO_should_retry_openssl_009154139b29e719(BIO *_swig_go_0) {
+intgo _wrap_BIO_should_retry_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -1658,7 +1658,7 @@ intgo _wrap_BIO_should_retry_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-intgo _wrap_BIO_reset_openssl_009154139b29e719(BIO *_swig_go_0) {
+intgo _wrap_BIO_reset_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -1671,7 +1671,7 @@ intgo _wrap_BIO_reset_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-intgo _wrap_BIO_seek_openssl_009154139b29e719(BIO *_swig_go_0, intgo _swig_go_1) {
+intgo _wrap_BIO_seek_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, intgo _swig_go_1) {
   BIO *arg1 = (BIO *) 0 ;
   int arg2 ;
   int result;
@@ -1686,7 +1686,7 @@ intgo _wrap_BIO_seek_openssl_009154139b29e719(BIO *_swig_go_0, intgo _swig_go_1)
 }
 
 
-intgo _wrap_BIO_tell_openssl_009154139b29e719(BIO *_swig_go_0) {
+intgo _wrap_BIO_tell_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -1699,7 +1699,7 @@ intgo _wrap_BIO_tell_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-intgo _wrap_BIO_flush_openssl_009154139b29e719(BIO *_swig_go_0) {
+intgo _wrap_BIO_flush_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -1712,7 +1712,7 @@ intgo _wrap_BIO_flush_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-intgo _wrap_BIO_eof_openssl_009154139b29e719(BIO *_swig_go_0) {
+intgo _wrap_BIO_eof_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -1725,7 +1725,7 @@ intgo _wrap_BIO_eof_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-intgo _wrap_BIO_set_close_openssl_009154139b29e719(BIO *_swig_go_0, long long _swig_go_1) {
+intgo _wrap_BIO_set_close_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, long long _swig_go_1) {
   BIO *arg1 = (BIO *) 0 ;
   long arg2 ;
   int result;
@@ -1740,7 +1740,7 @@ intgo _wrap_BIO_set_close_openssl_009154139b29e719(BIO *_swig_go_0, long long _s
 }
 
 
-intgo _wrap_BIO_pending_openssl_009154139b29e719(BIO *_swig_go_0) {
+intgo _wrap_BIO_pending_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -1753,7 +1753,7 @@ intgo _wrap_BIO_pending_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-long long _wrap_BIO_ctrl_pending_openssl_009154139b29e719(BIO *_swig_go_0) {
+long long _wrap_BIO_ctrl_pending_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   size_t result;
   long long _swig_go_result;
@@ -1766,7 +1766,7 @@ long long _wrap_BIO_ctrl_pending_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-long long _wrap_BIO_ctrl_wpending_openssl_009154139b29e719(BIO *_swig_go_0) {
+long long _wrap_BIO_ctrl_wpending_libssl_cc5c18f307e68e7f(BIO *_swig_go_0) {
   BIO *arg1 = (BIO *) 0 ;
   size_t result;
   long long _swig_go_result;
@@ -1779,7 +1779,7 @@ long long _wrap_BIO_ctrl_wpending_openssl_009154139b29e719(BIO *_swig_go_0) {
 }
 
 
-void *_wrap_BIO_get_ex_data_openssl_009154139b29e719(BIO *_swig_go_0, intgo _swig_go_1) {
+void *_wrap_BIO_get_ex_data_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, intgo _swig_go_1) {
   BIO *arg1 = (BIO *) 0 ;
   int arg2 ;
   void *result = 0 ;
@@ -1794,7 +1794,7 @@ void *_wrap_BIO_get_ex_data_openssl_009154139b29e719(BIO *_swig_go_0, intgo _swi
 }
 
 
-intgo _wrap_BIO_set_ex_data_openssl_009154139b29e719(BIO *_swig_go_0, intgo _swig_go_1, void *_swig_go_2) {
+intgo _wrap_BIO_set_ex_data_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, intgo _swig_go_1, void *_swig_go_2) {
   BIO *arg1 = (BIO *) 0 ;
   int arg2 ;
   void *arg3 = (void *) 0 ;
@@ -1811,7 +1811,7 @@ intgo _wrap_BIO_set_ex_data_openssl_009154139b29e719(BIO *_swig_go_0, intgo _swi
 }
 
 
-intgo _wrap_BIO_gets_openssl_009154139b29e719(BIO *_swig_go_0, _goslice_ _swig_go_1) {
+intgo _wrap_BIO_gets_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, _goslice_ _swig_go_1) {
   BIO *arg1 = (BIO *) 0 ;
   char *arg2 = (char *) 0 ;
   int arg3 ;
@@ -1844,7 +1844,7 @@ intgo _wrap_BIO_gets_openssl_009154139b29e719(BIO *_swig_go_0, _goslice_ _swig_g
 }
 
 
-intgo _wrap_BIO_puts_openssl_009154139b29e719(BIO *_swig_go_0, _gostring_ _swig_go_1) {
+intgo _wrap_BIO_puts_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, _gostring_ _swig_go_1) {
   BIO *arg1 = (BIO *) 0 ;
   char *arg2 = (char *) 0 ;
   int result;
@@ -1864,7 +1864,7 @@ intgo _wrap_BIO_puts_openssl_009154139b29e719(BIO *_swig_go_0, _gostring_ _swig_
 }
 
 
-EVP_PKEY *_wrap_PEM_read_bio_PrivateKey_openssl_009154139b29e719(BIO *_swig_go_0, EVP_PKEY **_swig_go_1, void* _swig_go_2, void *_swig_go_3) {
+EVP_PKEY *_wrap_PEM_read_bio_PrivateKey_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, EVP_PKEY **_swig_go_1, void* _swig_go_2, void *_swig_go_3) {
   BIO *arg1 = (BIO *) 0 ;
   EVP_PKEY **arg2 = (EVP_PKEY **) 0 ;
   pem_password_cb *arg3 = (pem_password_cb *) 0 ;
@@ -1883,7 +1883,7 @@ EVP_PKEY *_wrap_PEM_read_bio_PrivateKey_openssl_009154139b29e719(BIO *_swig_go_0
 }
 
 
-X509 *_wrap_PEM_read_bio_X509_openssl_009154139b29e719(BIO *_swig_go_0, X509 **_swig_go_1, void* _swig_go_2, void *_swig_go_3) {
+X509 *_wrap_PEM_read_bio_X509_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, X509 **_swig_go_1, void* _swig_go_2, void *_swig_go_3) {
   BIO *arg1 = (BIO *) 0 ;
   X509 **arg2 = (X509 **) 0 ;
   pem_password_cb *arg3 = (pem_password_cb *) 0 ;
@@ -1902,7 +1902,7 @@ X509 *_wrap_PEM_read_bio_X509_openssl_009154139b29e719(BIO *_swig_go_0, X509 **_
 }
 
 
-intgo _wrap_X509_STORE_add_cert_openssl_009154139b29e719(X509_STORE *_swig_go_0, X509 *_swig_go_1) {
+intgo _wrap_X509_STORE_add_cert_libssl_cc5c18f307e68e7f(X509_STORE *_swig_go_0, X509 *_swig_go_1) {
   X509_STORE *arg1 = (X509_STORE *) 0 ;
   X509 *arg2 = (X509 *) 0 ;
   int result;
@@ -1917,7 +1917,7 @@ intgo _wrap_X509_STORE_add_cert_openssl_009154139b29e719(X509_STORE *_swig_go_0,
 }
 
 
-intgo _wrap_SSL_get_ex_new_index_openssl_009154139b29e719(long long _swig_go_0, void *_swig_go_1, CRYPTO_EX_new *_swig_go_2, CRYPTO_EX_dup *_swig_go_3, CRYPTO_EX_free *_swig_go_4) {
+intgo _wrap_SSL_get_ex_new_index_libssl_cc5c18f307e68e7f(long long _swig_go_0, void *_swig_go_1, CRYPTO_EX_new *_swig_go_2, CRYPTO_EX_dup *_swig_go_3, CRYPTO_EX_free *_swig_go_4) {
   long arg1 ;
   void *arg2 = (void *) 0 ;
   CRYPTO_EX_new *arg3 = (CRYPTO_EX_new *) 0 ;
@@ -1938,7 +1938,7 @@ intgo _wrap_SSL_get_ex_new_index_openssl_009154139b29e719(long long _swig_go_0, 
 }
 
 
-intgo _wrap_SSL_CTX_get_ex_new_index_openssl_009154139b29e719(long long _swig_go_0, void *_swig_go_1, CRYPTO_EX_new *_swig_go_2, CRYPTO_EX_dup *_swig_go_3, CRYPTO_EX_free *_swig_go_4) {
+intgo _wrap_SSL_CTX_get_ex_new_index_libssl_cc5c18f307e68e7f(long long _swig_go_0, void *_swig_go_1, CRYPTO_EX_new *_swig_go_2, CRYPTO_EX_dup *_swig_go_3, CRYPTO_EX_free *_swig_go_4) {
   long arg1 ;
   void *arg2 = (void *) 0 ;
   CRYPTO_EX_new *arg3 = (CRYPTO_EX_new *) 0 ;
@@ -1959,7 +1959,7 @@ intgo _wrap_SSL_CTX_get_ex_new_index_openssl_009154139b29e719(long long _swig_go
 }
 
 
-intgo _wrap_BIO_get_ex_new_index_openssl_009154139b29e719(long long _swig_go_0, void *_swig_go_1, CRYPTO_EX_new *_swig_go_2, CRYPTO_EX_dup *_swig_go_3, CRYPTO_EX_free *_swig_go_4) {
+intgo _wrap_BIO_get_ex_new_index_libssl_cc5c18f307e68e7f(long long _swig_go_0, void *_swig_go_1, CRYPTO_EX_new *_swig_go_2, CRYPTO_EX_dup *_swig_go_3, CRYPTO_EX_free *_swig_go_4) {
   long arg1 ;
   void *arg2 = (void *) 0 ;
   CRYPTO_EX_new *arg3 = (CRYPTO_EX_new *) 0 ;
@@ -1980,7 +1980,7 @@ intgo _wrap_BIO_get_ex_new_index_openssl_009154139b29e719(long long _swig_go_0, 
 }
 
 
-void *_wrap_X509_STORE_CTX_get_ex_data_openssl_009154139b29e719(X509_STORE_CTX *_swig_go_0, intgo _swig_go_1) {
+void *_wrap_X509_STORE_CTX_get_ex_data_libssl_cc5c18f307e68e7f(X509_STORE_CTX *_swig_go_0, intgo _swig_go_1) {
   X509_STORE_CTX *arg1 = (X509_STORE_CTX *) 0 ;
   int arg2 ;
   void *result = 0 ;
@@ -1995,7 +1995,7 @@ void *_wrap_X509_STORE_CTX_get_ex_data_openssl_009154139b29e719(X509_STORE_CTX *
 }
 
 
-intgo _wrap_X509_NAME_print_openssl_009154139b29e719(BIO *_swig_go_0, X509_NAME *_swig_go_1, intgo _swig_go_2) {
+intgo _wrap_X509_NAME_print_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, X509_NAME *_swig_go_1, intgo _swig_go_2) {
   BIO *arg1 = (BIO *) 0 ;
   X509_NAME *arg2 = (X509_NAME *) 0 ;
   int arg3 ;
@@ -2012,7 +2012,7 @@ intgo _wrap_X509_NAME_print_openssl_009154139b29e719(BIO *_swig_go_0, X509_NAME 
 }
 
 
-X509_NAME *_wrap_X509_get_subject_name_openssl_009154139b29e719(X509 *_swig_go_0) {
+X509_NAME *_wrap_X509_get_subject_name_libssl_cc5c18f307e68e7f(X509 *_swig_go_0) {
   X509 *arg1 = (X509 *) 0 ;
   X509_NAME *result = 0 ;
   X509_NAME *_swig_go_result;
@@ -2025,7 +2025,7 @@ X509_NAME *_wrap_X509_get_subject_name_openssl_009154139b29e719(X509 *_swig_go_0
 }
 
 
-X509_NAME *_wrap_X509_get_issuer_name_openssl_009154139b29e719(X509 *_swig_go_0) {
+X509_NAME *_wrap_X509_get_issuer_name_libssl_cc5c18f307e68e7f(X509 *_swig_go_0) {
   X509 *arg1 = (X509 *) 0 ;
   X509_NAME *result = 0 ;
   X509_NAME *_swig_go_result;
@@ -2038,7 +2038,7 @@ X509_NAME *_wrap_X509_get_issuer_name_openssl_009154139b29e719(X509 *_swig_go_0)
 }
 
 
-_gostring_ _wrap_X509_verify_cert_error_string_openssl_009154139b29e719(long long _swig_go_0) {
+_gostring_ _wrap_X509_verify_cert_error_string_libssl_cc5c18f307e68e7f(long long _swig_go_0) {
   long arg1 ;
   char *result = 0 ;
   _gostring_ _swig_go_result;
@@ -2051,7 +2051,7 @@ _gostring_ _wrap_X509_verify_cert_error_string_openssl_009154139b29e719(long lon
 }
 
 
-intgo _wrap_X509_STORE_CTX_get_error_openssl_009154139b29e719(X509_STORE_CTX *_swig_go_0) {
+intgo _wrap_X509_STORE_CTX_get_error_libssl_cc5c18f307e68e7f(X509_STORE_CTX *_swig_go_0) {
   X509_STORE_CTX *arg1 = (X509_STORE_CTX *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -2064,7 +2064,7 @@ intgo _wrap_X509_STORE_CTX_get_error_openssl_009154139b29e719(X509_STORE_CTX *_s
 }
 
 
-EVP_MD *_wrap_EVP_sha256_openssl_009154139b29e719() {
+EVP_MD *_wrap_EVP_sha256_libssl_cc5c18f307e68e7f() {
   EVP_MD *result = 0 ;
   EVP_MD *_swig_go_result;
   
@@ -2075,7 +2075,7 @@ EVP_MD *_wrap_EVP_sha256_openssl_009154139b29e719() {
 }
 
 
-EVP_MD *_wrap_EVP_sha512_openssl_009154139b29e719() {
+EVP_MD *_wrap_EVP_sha512_libssl_cc5c18f307e68e7f() {
   EVP_MD *result = 0 ;
   EVP_MD *_swig_go_result;
   
@@ -2086,7 +2086,7 @@ EVP_MD *_wrap_EVP_sha512_openssl_009154139b29e719() {
 }
 
 
-EVP_MD *_wrap_EVP_sha1_openssl_009154139b29e719() {
+EVP_MD *_wrap_EVP_sha1_libssl_cc5c18f307e68e7f() {
   EVP_MD *result = 0 ;
   EVP_MD *_swig_go_result;
   
@@ -2097,7 +2097,7 @@ EVP_MD *_wrap_EVP_sha1_openssl_009154139b29e719() {
 }
 
 
-EVP_MD *_wrap_EVP_md5_openssl_009154139b29e719() {
+EVP_MD *_wrap_EVP_md5_libssl_cc5c18f307e68e7f() {
   EVP_MD *result = 0 ;
   EVP_MD *_swig_go_result;
   
@@ -2108,7 +2108,7 @@ EVP_MD *_wrap_EVP_md5_openssl_009154139b29e719() {
 }
 
 
-EVP_CIPHER *_wrap_EVP_aes_128_cbc_openssl_009154139b29e719() {
+EVP_CIPHER *_wrap_EVP_aes_128_cbc_libssl_cc5c18f307e68e7f() {
   EVP_CIPHER *result = 0 ;
   EVP_CIPHER *_swig_go_result;
   
@@ -2119,7 +2119,7 @@ EVP_CIPHER *_wrap_EVP_aes_128_cbc_openssl_009154139b29e719() {
 }
 
 
-EVP_CIPHER *_wrap_EVP_aes_256_cbc_openssl_009154139b29e719() {
+EVP_CIPHER *_wrap_EVP_aes_256_cbc_libssl_cc5c18f307e68e7f() {
   EVP_CIPHER *result = 0 ;
   EVP_CIPHER *_swig_go_result;
   
@@ -2130,7 +2130,7 @@ EVP_CIPHER *_wrap_EVP_aes_256_cbc_openssl_009154139b29e719() {
 }
 
 
-EVP_CIPHER *_wrap_EVP_aes_128_cfb_openssl_009154139b29e719() {
+EVP_CIPHER *_wrap_EVP_aes_128_cfb_libssl_cc5c18f307e68e7f() {
   EVP_CIPHER *result = 0 ;
   EVP_CIPHER *_swig_go_result;
   
@@ -2141,7 +2141,7 @@ EVP_CIPHER *_wrap_EVP_aes_128_cfb_openssl_009154139b29e719() {
 }
 
 
-EVP_CIPHER *_wrap_EVP_aes_256_cfb_openssl_009154139b29e719() {
+EVP_CIPHER *_wrap_EVP_aes_256_cfb_libssl_cc5c18f307e68e7f() {
   EVP_CIPHER *result = 0 ;
   EVP_CIPHER *_swig_go_result;
   
@@ -2152,7 +2152,7 @@ EVP_CIPHER *_wrap_EVP_aes_256_cfb_openssl_009154139b29e719() {
 }
 
 
-EVP_CIPHER *_wrap_EVP_aes_128_gcm_openssl_009154139b29e719() {
+EVP_CIPHER *_wrap_EVP_aes_128_gcm_libssl_cc5c18f307e68e7f() {
   EVP_CIPHER *result = 0 ;
   EVP_CIPHER *_swig_go_result;
   
@@ -2163,7 +2163,7 @@ EVP_CIPHER *_wrap_EVP_aes_128_gcm_openssl_009154139b29e719() {
 }
 
 
-EVP_CIPHER *_wrap_EVP_aes_256_gcm_openssl_009154139b29e719() {
+EVP_CIPHER *_wrap_EVP_aes_256_gcm_libssl_cc5c18f307e68e7f() {
   EVP_CIPHER *result = 0 ;
   EVP_CIPHER *_swig_go_result;
   
@@ -2174,7 +2174,7 @@ EVP_CIPHER *_wrap_EVP_aes_256_gcm_openssl_009154139b29e719() {
 }
 
 
-intgo _wrap_EVP_CIPHER_key_length_openssl_009154139b29e719(EVP_CIPHER *_swig_go_0) {
+intgo _wrap_EVP_CIPHER_key_length_libssl_cc5c18f307e68e7f(EVP_CIPHER *_swig_go_0) {
   EVP_CIPHER *arg1 = (EVP_CIPHER *) 0 ;
   int result;
   intgo _swig_go_result;
@@ -2187,7 +2187,7 @@ intgo _wrap_EVP_CIPHER_key_length_openssl_009154139b29e719(EVP_CIPHER *_swig_go_
 }
 
 
-intgo _wrap_EVP_CIPHER_iv_length_openssl_009154139b29e719(EVP_CIPHER *_swig_go_0) {
+intgo _wrap_EVP_CIPHER_iv_length_libssl_cc5c18f307e68e7f(EVP_CIPHER *_swig_go_0) {
   EVP_CIPHER *arg1 = (EVP_CIPHER *) 0 ;
   int result;
   intgo _swig_go_result;

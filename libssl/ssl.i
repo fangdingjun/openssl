@@ -26,12 +26,12 @@ int SSL_connect(SSL *ssl);
 %{
 
 extern int GoSslVerifyCb(int preverify_ok, uintptr_t x509_ctx);
-int MY_ssl_verify_cb(int preverify_ok, X509_STORE_CTX *x509_ctx){
+int custom_ssl_verify_cb(int preverify_ok, X509_STORE_CTX *x509_ctx){
     return GoSslVerifyCb(preverify_ok, (uintptr_t)(x509_ctx));
 }
 %}
 
-%constant int MY_ssl_verify_cb(int preverify_ok, X509_STORE_CTX *x509_ctx);
+%constant int custom_ssl_verify_cb(int preverify_ok, X509_STORE_CTX *x509_ctx);
 
 //SSL_verify_cb SSL_get_verify_callback(const SSL *s);
 void SSL_set_verify(SSL *s, int mode, SSL_verify_cb callback);
@@ -61,7 +61,7 @@ extern unsigned int GoSslPskClientCbFunc(SSL *ssl,
                                                unsigned char *psk,
                                                unsigned int max_psk_len);
 
-unsigned int MY_ssl_psk_client_cb_func(SSL *ssl,
+unsigned int custom_ssl_psk_client_cb_func(SSL *ssl,
                                                const char *hint,
                                                char *identity,
                                                unsigned int max_identity_len,
@@ -71,7 +71,7 @@ unsigned int MY_ssl_psk_client_cb_func(SSL *ssl,
 }
 
 %}
-%constant unsigned int MY_ssl_psk_client_cb_func(SSL *ssl,
+%constant unsigned int custom_ssl_psk_client_cb_func(SSL *ssl,
                                                const char *hint,
                                                char *identity,
                                                unsigned int max_identity_len,

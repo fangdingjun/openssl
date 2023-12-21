@@ -1,4 +1,4 @@
-%module openssl
+%module libssl
 
 %include "ssl_typemaps.i"
 

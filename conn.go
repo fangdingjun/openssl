@@ -12,54 +12,38 @@ import (
 	"sync/atomic"
 	"time"
 	"unsafe"
+
+	"github.com/fangdingjun/openssl/libssl"
 )
 
-//export GoSslPskClientCbFunc
-func GoSslPskClientCbFunc(_ssl uintptr, hint *C.char, identity *C.char,
-	max_identity_len C.uint, psk *C.uchar, max_psk_len C.uint) C.uint {
-
-	//fmt.Printf("psk client cb\n")
-
-	ssl := SwigcptrSSL(_ssl)
-	c := SSL_get_ex_data(ssl, sslDataIdx)
-	conn := (*Conn)(unsafe.Pointer(c))
-	//fmt.Printf("config %+v\n", conn.config)
-
-	identityC := C.CString(conn.config.Identity)
-	defer C.free(unsafe.Pointer(identityC))
-
-	C.strcpy(identity, identityC)
-
-	pskC := C.CBytes(conn.config.Psk)
-	defer C.free(pskC)
-
-	C.memcpy(unsafe.Pointer(psk), pskC, C.ulong(len(conn.config.Psk)))
-
-	return C.uint(len(conn.config.Psk))
+func pskClientCallback(addr uintptr, hint string) (string, []byte) {
+	ssl := libssl.SwigcptrSSL(addr)
+	connAddr := libssl.SSL_get_ex_data(ssl, sslDataIdx)
+	conn := (*Conn)(unsafe.Pointer(connAddr))
+	return conn.config.Identity, conn.config.Psk
 }
 
-//export GoSslVerifyCb
-func GoSslVerifyCb(preverify_ok C.int, x509_ctx uintptr) C.int {
-	//fmt.Printf("verify callback, preverify %d\n", preverify_ok)
-	storeCtx := SwigcptrX509_STORE_CTX(x509_ctx)
-	a := X509_STORE_CTX_get_ex_data(storeCtx, SSL_get_ex_data_X509_STORE_CTX_idx())
+func certificateVerifyCallback(preverify int, addr uintptr) int {
+	//fmt.Printf("verify callback, preverify %d\n", preverify)
+	storeCtx := libssl.SwigcptrX509_STORE_CTX(addr)
+	sslAddr := libssl.X509_STORE_CTX_get_ex_data(storeCtx, libssl.SSL_get_ex_data_X509_STORE_CTX_idx())
 
-	ssl := SwigcptrSSL(a)
+	ssl := libssl.SwigcptrSSL(sslAddr)
 
-	c := SSL_get_ex_data(ssl, sslDataIdx)
-	conn := (*Conn)(unsafe.Pointer(c))
+	connAddr := libssl.SSL_get_ex_data(ssl, sslDataIdx)
+	conn := (*Conn)(unsafe.Pointer(connAddr))
 
 	//fmt.Printf("config %+v\n", conn.config)
 
 	if conn.config.InsecureSkipVerify || conn.isServer {
-		return C.int(1)
+		return 1
 	}
 
-	if int(preverify_ok) == 0 {
-		errcode := X509_STORE_CTX_get_error(storeCtx)
-		fmt.Printf("certificate verify error: %s\n", X509_verify_cert_error_string(int64(errcode)))
+	if preverify == 0 {
+		errcode := libssl.X509_STORE_CTX_get_error(storeCtx)
+		fmt.Printf("certificate verify error: %s\n", libssl.X509_verify_cert_error_string(int64(errcode)))
 	}
-	return preverify_ok
+	return preverify
 }
 
 var sslDataIdx = 0
@@ -71,13 +55,13 @@ type Config struct {
 	ServerName string
 
 	// private key to use
-	PrivateKey EVP_PKEY
+	PrivateKey libssl.EVP_PKEY
 
 	// ALPN names
 	NextProtos []string
 
 	// certificate to use
-	Certificate X509
+	Certificate libssl.X509
 
 	// psk identity used in psk mode
 	Identity string
@@ -89,9 +73,9 @@ type Config struct {
 	InsecureSkipVerify bool
 
 	// additional root ca to use
-	RootCA X509
+	RootCA libssl.X509
 
-	ClientCA X509
+	ClientCA libssl.X509
 
 	// verify client or not
 	ClientAuth int
@@ -149,9 +133,9 @@ func NewListener(inner net.Listener, config *Config) net.Listener {
 
 // Conn a tls connection
 type Conn struct {
-	ctx               SSL_CTX
-	ssl               SSL
-	bio               BIO
+	ctx               libssl.SSL_CTX
+	ssl               libssl.SSL
+	bio               libssl.BIO
 	f                 *os.File
 	c                 net.Conn
 	config            *Config
@@ -170,15 +154,15 @@ func Client(conn net.Conn, config *Config) *Conn {
 	}
 	fconn, _ := tcpconn.File()
 
-	ctx := SSL_CTX_new(TLS_client_method())
-	SSL_CTX_set_default_verify_paths(ctx)
+	ctx := libssl.SSL_CTX_new(libssl.TLS_client_method())
+	libssl.SSL_CTX_set_default_verify_paths(ctx)
 
-	bio := BIO_new_fd(int(fconn.Fd()), BIO_NOCLOSE)
+	bio := libssl.BIO_new_fd(int(fconn.Fd()), libssl.BIO_NOCLOSE)
 
-	bio1 := BIO_new_ssl(ctx, 1)
-	BIO_push(bio1, bio)
+	bio1 := libssl.BIO_new_ssl(ctx, 1)
+	libssl.BIO_push(bio1, bio)
 
-	ssl := BIO_get_ssl(bio1)
+	ssl := libssl.BIO_get_ssl(bio1)
 
 	sslconn := &Conn{
 		ctx:    ctx,
@@ -194,13 +178,13 @@ func Client(conn net.Conn, config *Config) *Conn {
 
 // Dial create a connection to addr and intial the tls context
 func Dial(network, addr string, config *Config) (*Conn, error) {
-	ctx := SSL_CTX_new(TLS_client_method())
-	SSL_CTX_set_default_verify_paths(ctx)
+	ctx := libssl.SSL_CTX_new(libssl.TLS_client_method())
+	libssl.SSL_CTX_set_default_verify_paths(ctx)
 
-	bio := BIO_new_ssl_connect(ctx)
-	BIO_set_conn_hostname(bio, addr)
-	//BIO_set_ssl_mode(bio, 1)
-	ssl := BIO_get_ssl(bio)
+	bio := libssl.BIO_new_ssl_connect(ctx)
+	libssl.BIO_set_conn_hostname(bio, addr)
+	//libssl.BIO_set_ssl_mode(bio, 1)
+	ssl := libssl.BIO_get_ssl(bio)
 
 	c := &Conn{
 		ctx: ctx, bio: bio,
@@ -235,28 +219,28 @@ func (c *Conn) setupServer() error {
 		return err
 	}
 
-	ctx := SSL_CTX_new(TLS_server_method())
+	ctx := libssl.SSL_CTX_new(libssl.TLS_server_method())
 
-	ret := SSL_CTX_use_PrivateKey(ctx, c.config.PrivateKey)
+	ret := libssl.SSL_CTX_use_PrivateKey(ctx, c.config.PrivateKey)
 	if ret < 0 {
 		return fmt.Errorf("set private key %s", GetSslError())
 	}
 
-	ret = SSL_CTX_use_certificate(ctx, c.config.Certificate)
+	ret = libssl.SSL_CTX_use_certificate(ctx, c.config.Certificate)
 	if ret < 0 {
 		return fmt.Errorf("set certificate %s", GetSslError())
 	}
 
 	if c.config.ClientAuth > 0 {
 		//fmt.Printf("server set client auth\n")
-		SSL_CTX_set_verify(ctx, SSL_VERIFY_PEER|SSL_VERIFY_FAIL_IF_NO_PEER_CERT, MY_ssl_verify_cb)
+		libssl.SSL_CTX_set_verify(ctx, libssl.SSL_VERIFY_PEER|libssl.SSL_VERIFY_FAIL_IF_NO_PEER_CERT, libssl.Custom_ssl_verify_cb)
 	}
 
-	sbio := BIO_new_ssl(ctx, 0)
-	bio := BIO_new_fd(int(fconn.Fd()), BIO_NOCLOSE)
-	BIO_push(sbio, bio)
+	sbio := libssl.BIO_new_ssl(ctx, 0)
+	bio := libssl.BIO_new_fd(int(fconn.Fd()), libssl.BIO_NOCLOSE)
+	libssl.BIO_push(sbio, bio)
 
-	ssl := BIO_get_ssl(sbio)
+	ssl := libssl.BIO_get_ssl(sbio)
 
 	c.f = fconn
 	c.ssl = ssl
@@ -264,15 +248,15 @@ func (c *Conn) setupServer() error {
 	c.bio = sbio
 	c.isServer = true
 
-	SSL_CTX_set_ex_data(c.ctx, ctxDataIdx, uintptr(unsafe.Pointer(c)))
-	SSL_set_ex_data(c.ssl, sslDataIdx, uintptr(unsafe.Pointer(c)))
+	libssl.SSL_CTX_set_ex_data(c.ctx, ctxDataIdx, uintptr(unsafe.Pointer(c)))
+	libssl.SSL_set_ex_data(c.ssl, sslDataIdx, uintptr(unsafe.Pointer(c)))
 	//fmt.Printf("setup server done\n")
 	return nil
 }
 
 func (c *Conn) setupClient() error {
 	if c.config.ServerName != "" {
-		SSL_set_tlsext_host_name(c.ssl, c.config.ServerName)
+		libssl.SSL_set_tlsext_host_name(c.ssl, c.config.ServerName)
 	}
 	if len(c.config.NextProtos) > 0 {
 		buf := []byte{}
@@ -280,20 +264,20 @@ func (c *Conn) setupClient() error {
 			buf = append(buf, byte(len(p)))
 			buf = append(buf, []byte(p)...)
 		}
-		SSL_set_alpn_protos(c.ssl, buf)
+		libssl.SSL_set_alpn_protos(c.ssl, buf)
 	}
 
 	if c.config.PrivateKey != nil && c.config.Certificate != nil {
 		//fmt.Printf("client set certificate\n")
-		SSL_use_PrivateKey(c.ssl, c.config.PrivateKey)
-		SSL_use_certificate(c.ssl, c.config.Certificate)
+		libssl.SSL_use_PrivateKey(c.ssl, c.config.PrivateKey)
+		libssl.SSL_use_certificate(c.ssl, c.config.Certificate)
 	}
 
 	if c.config.RootCA != nil {
-		store := SSL_CTX_get_cert_store(c.ctx)
+		store := libssl.SSL_CTX_get_cert_store(c.ctx)
 		if store.Swigcptr() != uintptr(0) {
 			//fmt.Printf("add custom ca\n")
-			ret := X509_STORE_add_cert(store, c.config.RootCA)
+			ret := libssl.X509_STORE_add_cert(store, c.config.RootCA)
 			if ret < 0 {
 				fmt.Printf("add root cert failed %s\n", GetSslError())
 			}
@@ -302,10 +286,10 @@ func (c *Conn) setupClient() error {
 		}
 	}
 
-	SSL_set_verify(c.ssl, SSL_VERIFY_PEER, MY_ssl_verify_cb)
-	SSL_set_verify_depth(c.ssl, 4)
-	SSL_CTX_set_ex_data(c.ctx, ctxDataIdx, uintptr(unsafe.Pointer(c)))
-	SSL_set_ex_data(c.ssl, sslDataIdx, uintptr(unsafe.Pointer(c)))
+	libssl.SSL_set_verify(c.ssl, libssl.SSL_VERIFY_PEER, libssl.Custom_ssl_verify_cb)
+	libssl.SSL_set_verify_depth(c.ssl, 4)
+	libssl.SSL_CTX_set_ex_data(c.ctx, ctxDataIdx, uintptr(unsafe.Pointer(c)))
+	libssl.SSL_set_ex_data(c.ssl, sslDataIdx, uintptr(unsafe.Pointer(c)))
 	return nil
 }
 
@@ -315,7 +299,7 @@ func (c *Conn) Handshake() error {
 	if val > 0 {
 		return nil
 	}
-	ret := BIO_do_handshake(c.bio)
+	ret := libssl.BIO_do_handshake(c.bio)
 	if ret <= 0 {
 		return fmt.Errorf("handshake error %s", GetSslError())
 	}
@@ -332,7 +316,7 @@ func (c *Conn) Read(buf []byte) (int, error) {
 			return 0, err
 		}
 	}
-	n := BIO_read(c.bio, buf)
+	n := libssl.BIO_read(c.bio, buf)
 	if n <= 0 {
 		return 0, fmt.Errorf("read error %s", GetSslError())
 	}
@@ -348,7 +332,7 @@ func (c *Conn) Write(buf []byte) (int, error) {
 			return 0, err
 		}
 	}
-	n := BIO_write(c.bio, buf)
+	n := libssl.BIO_write(c.bio, buf)
 	if n <= 0 {
 		return 0, fmt.Errorf("write error %s", GetSslError())
 	}
@@ -358,7 +342,7 @@ func (c *Conn) Write(buf []byte) (int, error) {
 // Close close the tls connection
 func (c *Conn) Close() error {
 	if c.ssl != nil {
-		SSL_shutdown(c.ssl)
+		libssl.SSL_shutdown(c.ssl)
 	}
 	if c.f != nil {
 		c.f.Close()
@@ -369,11 +353,11 @@ func (c *Conn) Close() error {
 	}
 
 	if c.bio != nil {
-		BIO_free_all(c.bio)
+		libssl.BIO_free_all(c.bio)
 	}
 
 	if c.ctx != nil {
-		SSL_CTX_free(c.ctx)
+		libssl.SSL_CTX_free(c.ctx)
 	}
 	return nil
 }
@@ -415,10 +399,10 @@ func (c *Conn) ConnectionState() ConnectionState {
 	val := atomic.LoadInt64(&c.handshakeComplete)
 	if val > 0 {
 		state.HandshakeComplete = true
-		state.PeerCertificate = SSL_get_peer_certificate(c.ssl)
+		state.PeerCertificate = libssl.SSL_get_peer_certificate(c.ssl)
 	}
 	if val > 0 && len(c.config.NextProtos) > 0 {
-		state.NegotiatedProtocol = SSL_get_alpn_selected(c.ssl)
+		state.NegotiatedProtocol = libssl.SSL_get_alpn_selected(c.ssl)
 	}
 	return state
 }
@@ -427,16 +411,16 @@ func (c *Conn) ConnectionState() ConnectionState {
 type ConnectionState struct {
 	NegotiatedProtocol string
 	HandshakeComplete  bool
-	PeerCertificate    X509
+	PeerCertificate    libssl.X509
 }
 
 // GetCertificateSubject get the subject from x509 certificate
-func GetCertificateSubject(cert X509) string {
-	name := X509_get_subject_name(cert)
-	bio := BIO_new(BIO_s_mem())
-	X509_NAME_print(bio, name, ' ')
+func GetCertificateSubject(cert libssl.X509) string {
+	name := libssl.X509_get_subject_name(cert)
+	bio := libssl.BIO_new(libssl.BIO_s_mem())
+	libssl.X509_NAME_print(bio, name, ' ')
 	buf := make([]byte, 4096)
-	n := BIO_read(bio, buf)
+	n := libssl.BIO_read(bio, buf)
 	if n > 0 {
 		return string(buf[:n])
 	}
@@ -444,12 +428,12 @@ func GetCertificateSubject(cert X509) string {
 }
 
 // GetCertificateIssuer get the issuer subject from x509 certificate
-func GetCertificateIssuer(cert X509) string {
-	name := X509_get_issuer_name(cert)
-	bio := BIO_new(BIO_s_mem())
-	X509_NAME_print(bio, name, ' ')
+func GetCertificateIssuer(cert libssl.X509) string {
+	name := libssl.X509_get_issuer_name(cert)
+	bio := libssl.BIO_new(libssl.BIO_s_mem())
+	libssl.X509_NAME_print(bio, name, ' ')
 	buf := make([]byte, 4096)
-	n := BIO_read(bio, buf)
+	n := libssl.BIO_read(bio, buf)
 	if n > 0 {
 		return string(buf[:n])
 	}
@@ -458,10 +442,10 @@ func GetCertificateIssuer(cert X509) string {
 
 // GetSslError get the current ssl error
 func GetSslError() string {
-	bio := BIO_new(BIO_s_mem())
-	ERR_print_errors(bio)
+	bio := libssl.BIO_new(libssl.BIO_s_mem())
+	libssl.ERR_print_errors(bio)
 	buf := make([]byte, 1024)
-	n := BIO_read(bio, buf)
+	n := libssl.BIO_read(bio, buf)
 	if n > 0 {
 		return string(buf[:n])
 	}
@@ -470,8 +454,11 @@ func GetSslError() string {
 
 func init() {
 	//opt := 0
-	//OPENSSL_init_ssl(SwigcptrUint64_t(uintptr(unsafe.Pointer(&opt))), SwigcptrOPENSSL_INIT_SETTINGS(0))
-	//OPENSSL_init_crypto(SwigcptrUint64_t(uintptr(unsafe.Pointer(&opt))), SwigcptrOPENSSL_INIT_SETTINGS(0))
-	sslDataIdx = SSL_get_ex_new_index(0, uintptr(0), SwigcptrCRYPTO_EX_new(0), SwigcptrCRYPTO_EX_dup(0), SwigcptrCRYPTO_EX_free(0))
-	ctxDataIdx = SSL_CTX_get_ex_new_index(0, uintptr(0), SwigcptrCRYPTO_EX_new(0), SwigcptrCRYPTO_EX_dup(0), SwigcptrCRYPTO_EX_free(0))
+	//OPENlibssl.SSL_init_ssl(libssl.SwigcptrUint64_t(uintptr(unsafe.Pointer(&opt))), libssl.SwigcptrOPENlibssl.SSL_INIT_SETTINGS(0))
+	//OPENlibssl.SSL_init_crypto(libssl.SwigcptrUint64_t(uintptr(unsafe.Pointer(&opt))), libssl.SwigcptrOPENlibssl.SSL_INIT_SETTINGS(0))
+	sslDataIdx = libssl.SSL_get_ex_new_index(0, uintptr(0), libssl.SwigcptrCRYPTO_EX_new(0), libssl.SwigcptrCRYPTO_EX_dup(0), libssl.SwigcptrCRYPTO_EX_free(0))
+	ctxDataIdx = libssl.SSL_CTX_get_ex_new_index(0, uintptr(0), libssl.SwigcptrCRYPTO_EX_new(0), libssl.SwigcptrCRYPTO_EX_dup(0), libssl.SwigcptrCRYPTO_EX_free(0))
+
+	libssl.RegisterCertificateCallback(certificateVerifyCallback)
+	libssl.RegisterPSKCallback(pskClientCallback)
 }
