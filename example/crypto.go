@@ -6,6 +6,7 @@ import (
 	"log"
 
 	"github.com/fangdingjun/openssl"
+	"github.com/fangdingjun/openssl/libssl"
 )
 
 func md5example() {
@@ -47,7 +48,7 @@ func aesExample() {
 	rand.Reader.Read(key)
 	rand.Reader.Read(iv)
 
-	encCipher := openssl.NewCipherEncrypt(openssl.EVP_aes_128_gcm(), key, iv)
+	encCipher := openssl.NewCipherEncrypt(libssl.EVP_aes_128_gcm(), key, iv)
 	defer encCipher.Close()
 
 	encCipher.Write(data)
@@ -57,7 +58,7 @@ func aesExample() {
 	n, _ := encCipher.Read(result)
 	fmt.Printf("aes encrypt result %x\n", result[:n])
 
-	decCipher := openssl.NewCipherDecrypt(openssl.EVP_aes_128_gcm(), key, iv)
+	decCipher := openssl.NewCipherDecrypt(libssl.EVP_aes_128_gcm(), key, iv)
 	defer decCipher.Close()
 
 	decCipher.Write(result[:n])
