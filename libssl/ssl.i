@@ -346,3 +346,15 @@ X509 *SSL_get_peer_certificate(const SSL *ssl);
  X509_STORE *SSL_CTX_get_cert_store(const SSL_CTX *ctx);
 
 long SSL_get_verify_result(const SSL *ssl);
+
+uint64_t SSL_CTX_set_options(SSL_CTX *ctx, uint64_t options);
+uint64_t SSL_set_options(SSL *ssl, uint64_t options);
+
+#define SSL_OP_NO_SSLv3                                 0x02000000U
+#define SSL_OP_NO_TLSv1                                 0x04000000U
+#define SSL_OP_NO_TLSv1_2                               0x08000000U
+#define SSL_OP_NO_TLSv1_1                               0x10000000U
+#define SSL_OP_NO_TLSv1_3                               0x20000000U
+
+#define SSL_OP_NO_DTLSv1                                0x04000000U
+#define SSL_OP_NO_DTLSv1_2                              0x08000000U
