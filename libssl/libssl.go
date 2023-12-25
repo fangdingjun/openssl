@@ -33,41 +33,46 @@ typedef void* swig_type_2;
 typedef _goslice_ swig_type_3;
 typedef _goslice_ swig_type_4;
 typedef void* swig_type_5;
-typedef _gostring_ swig_type_6;
-typedef _gostring_ swig_type_7;
+typedef void* swig_type_6;
+typedef void* swig_type_7;
 typedef _gostring_ swig_type_8;
 typedef _gostring_ swig_type_9;
 typedef _gostring_ swig_type_10;
 typedef _gostring_ swig_type_11;
 typedef _gostring_ swig_type_12;
-typedef _goslice_ swig_type_13;
-typedef _goslice_ swig_type_14;
-typedef _gostring_ swig_type_15;
-typedef void* swig_type_16;
-typedef _goslice_ swig_type_17;
-typedef _goslice_ swig_type_18;
-typedef _gostring_ swig_type_19;
-typedef long long swig_type_20;
+typedef _gostring_ swig_type_13;
+typedef _gostring_ swig_type_14;
+typedef _goslice_ swig_type_15;
+typedef _goslice_ swig_type_16;
+typedef _gostring_ swig_type_17;
+typedef void* swig_type_18;
+typedef long long swig_type_19;
+typedef _goslice_ swig_type_20;
 typedef _goslice_ swig_type_21;
-typedef _goslice_ swig_type_22;
-typedef _gostring_ swig_type_23;
-typedef long long swig_type_24;
-typedef _gostring_ swig_type_25;
-typedef long long swig_type_26;
-typedef _gostring_ swig_type_27;
+typedef _gostring_ swig_type_22;
+typedef long long swig_type_23;
+typedef _goslice_ swig_type_24;
+typedef _goslice_ swig_type_25;
+typedef _gostring_ swig_type_26;
+typedef long long swig_type_27;
 typedef _gostring_ swig_type_28;
 typedef long long swig_type_29;
 typedef long long swig_type_30;
 typedef long long swig_type_31;
-typedef _goslice_ swig_type_32;
+typedef _gostring_ swig_type_32;
 typedef _gostring_ swig_type_33;
-typedef void* swig_type_34;
-typedef void* swig_type_35;
+typedef long long swig_type_34;
+typedef long long swig_type_35;
 typedef long long swig_type_36;
-typedef long long swig_type_37;
-typedef long long swig_type_38;
-typedef _gostring_ swig_type_39;
-typedef long long swig_type_40;
+typedef _goslice_ swig_type_37;
+typedef _gostring_ swig_type_38;
+typedef void* swig_type_39;
+typedef void* swig_type_40;
+typedef long long swig_type_41;
+typedef long long swig_type_42;
+typedef long long swig_type_43;
+typedef _gostring_ swig_type_44;
+typedef long long swig_type_45;
 extern void _wrap_Swig_free_libssl_cc5c18f307e68e7f(uintptr_t arg1);
 extern uintptr_t _wrap_Swig_malloc_libssl_cc5c18f307e68e7f(swig_intgo arg1);
 extern void _wrap_SSL_CTX_free_libssl_cc5c18f307e68e7f(uintptr_t arg1);
@@ -82,8 +87,8 @@ extern swig_intgo _wrap_SSL_write_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_t
 extern swig_intgo _wrap_SSL_do_handshake_libssl_cc5c18f307e68e7f(uintptr_t arg1);
 extern swig_intgo _wrap_SSL_read_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_4 arg2);
 extern swig_type_5 _wrap_custom_ssl_psk_client_cb_func_libssl_cc5c18f307e68e7f(void);
-extern void _wrap_SSL_CTX_set_psk_client_callback_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2);
-extern void _wrap_SSL_set_psk_client_callback_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2);
+extern void _wrap_SSL_CTX_set_psk_client_callback_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_6 arg2);
+extern void _wrap_SSL_set_psk_client_callback_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_7 arg2);
 extern uintptr_t _wrap_SSL_CTX_get0_certificate_libssl_cc5c18f307e68e7f(uintptr_t arg1);
 extern uintptr_t _wrap_SSL_CTX_get0_privatekey_libssl_cc5c18f307e68e7f(uintptr_t arg1);
 extern void _wrap_SSL_set_connect_state_libssl_cc5c18f307e68e7f(uintptr_t arg1);
@@ -100,35 +105,38 @@ extern uintptr_t _wrap_DTLS_server_method_libssl_cc5c18f307e68e7f(void);
 extern uintptr_t _wrap_DTLS_client_method_libssl_cc5c18f307e68e7f(void);
 extern swig_intgo _wrap_SSL_CTX_use_certificate_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2);
 extern swig_intgo _wrap_SSL_use_certificate_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2);
-extern swig_intgo _wrap_SSL_use_certificate_file_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_6 arg2, swig_intgo arg3);
-extern swig_intgo _wrap_SSL_CTX_use_certificate_chain_file_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_7 arg2);
-extern swig_intgo _wrap_SSL_use_certificate_chain_file_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_8 arg2);
+extern swig_intgo _wrap_SSL_use_certificate_file_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_8 arg2, swig_intgo arg3);
+extern swig_intgo _wrap_SSL_CTX_use_certificate_chain_file_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_9 arg2);
+extern swig_intgo _wrap_SSL_use_certificate_chain_file_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_10 arg2);
 extern swig_intgo _wrap_SSL_CTX_use_PrivateKey_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2);
-extern swig_intgo _wrap_SSL_CTX_use_PrivateKey_file_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_9 arg2, swig_intgo arg3);
+extern swig_intgo _wrap_SSL_CTX_use_PrivateKey_file_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_11 arg2, swig_intgo arg3);
 extern swig_intgo _wrap_SSL_use_PrivateKey_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2);
-extern swig_intgo _wrap_SSL_set_tlsext_host_name_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_10 arg2);
-extern swig_intgo _wrap_SSL_CTX_load_verify_locations_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_11 arg2, swig_type_12 arg3);
+extern swig_intgo _wrap_SSL_set_tlsext_host_name_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_12 arg2);
+extern swig_intgo _wrap_SSL_CTX_load_verify_locations_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_13 arg2, swig_type_14 arg3);
 extern swig_intgo _wrap_SSL_CTX_set_default_verify_paths_libssl_cc5c18f307e68e7f(uintptr_t arg1);
 extern swig_intgo _wrap_SSL_want_read_libssl_cc5c18f307e68e7f(uintptr_t arg1);
 extern swig_intgo _wrap_SSL_want_write_libssl_cc5c18f307e68e7f(uintptr_t arg1);
-extern swig_intgo _wrap_SSL_CTX_set_alpn_protos_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_13 arg2);
-extern swig_intgo _wrap_SSL_set_alpn_protos_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_14 arg2);
-extern swig_type_15 _wrap_SSL_get_alpn_selected_libssl_cc5c18f307e68e7f(uintptr_t arg1);
+extern swig_intgo _wrap_SSL_CTX_set_alpn_protos_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_15 arg2);
+extern swig_intgo _wrap_SSL_set_alpn_protos_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_16 arg2);
+extern swig_type_17 _wrap_SSL_get_alpn_selected_libssl_cc5c18f307e68e7f(uintptr_t arg1);
 extern uintptr_t _wrap_SSL_CTX_get_ex_data_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_intgo arg2);
 extern swig_intgo _wrap_SSL_CTX_set_ex_data_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_intgo arg2, uintptr_t arg3);
 extern uintptr_t _wrap_SSL_get_ex_data_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_intgo arg2);
 extern swig_intgo _wrap_SSL_set_ex_data_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_intgo arg2, uintptr_t arg3);
 extern void _wrap_ERR_print_errors_libssl_cc5c18f307e68e7f(uintptr_t arg1);
-extern void _wrap_SSL_CTX_set_verify_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_intgo arg2, swig_type_16 arg3);
+extern void _wrap_SSL_CTX_set_verify_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_intgo arg2, swig_type_18 arg3);
 extern swig_intgo _wrap_SSL_get_ex_data_X509_STORE_CTX_idx_libssl_cc5c18f307e68e7f(void);
 extern void _wrap_SSL_CTX_set_verify_depth_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_intgo arg2);
 extern void _wrap_SSL_set_verify_depth_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_intgo arg2);
 extern uintptr_t _wrap_SSL_get_peer_certificate_libssl_cc5c18f307e68e7f(uintptr_t arg1);
 extern uintptr_t _wrap_SSL_CTX_get_cert_store_libssl_cc5c18f307e68e7f(uintptr_t arg1);
+extern swig_type_19 _wrap_SSL_get_verify_result_libssl_cc5c18f307e68e7f(uintptr_t arg1);
+extern uintptr_t _wrap_SSL_CTX_set_options_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2);
+extern uintptr_t _wrap_SSL_set_options_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2);
 extern uintptr_t _wrap_BIO_f_base64_libssl_cc5c18f307e68e7f(void);
 extern uintptr_t _wrap_BIO_f_buffer_libssl_cc5c18f307e68e7f(void);
 extern uintptr_t _wrap_BIO_f_cipher_libssl_cc5c18f307e68e7f(void);
-extern swig_intgo _wrap_BIO_set_cipher_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2, swig_type_17 arg3, swig_type_18 arg4, swig_intgo arg5);
+extern swig_intgo _wrap_BIO_set_cipher_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2, swig_type_20 arg3, swig_type_21 arg4, swig_intgo arg5);
 extern uintptr_t _wrap_BIO_f_md_libssl_cc5c18f307e68e7f(void);
 extern swig_intgo _wrap_BIO_set_md_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2);
 extern uintptr_t _wrap_BIO_f_null_libssl_cc5c18f307e68e7f(void);
@@ -142,19 +150,29 @@ extern uintptr_t _wrap_BIO_new_ssl_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_
 extern uintptr_t _wrap_BIO_new_ssl_connect_libssl_cc5c18f307e68e7f(uintptr_t arg1);
 extern void _wrap_BIO_ssl_shutdown_libssl_cc5c18f307e68e7f(uintptr_t arg1);
 extern uintptr_t _wrap_BIO_s_accept_libssl_cc5c18f307e68e7f(void);
-extern uintptr_t _wrap_BIO_new_accept_libssl_cc5c18f307e68e7f(swig_type_19 arg1);
+extern uintptr_t _wrap_BIO_new_accept_libssl_cc5c18f307e68e7f(swig_type_22 arg1);
 extern swig_intgo _wrap_BIO_do_accept_libssl_cc5c18f307e68e7f(uintptr_t arg1);
-extern swig_type_20 _wrap_BIO_do_handshake_libssl_cc5c18f307e68e7f(uintptr_t arg1);
-extern swig_intgo _wrap_BIO_write_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_21 arg2);
-extern swig_intgo _wrap_BIO_read_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_22 arg2);
+extern swig_type_23 _wrap_BIO_do_handshake_libssl_cc5c18f307e68e7f(uintptr_t arg1);
+extern swig_intgo _wrap_BIO_write_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_24 arg2);
+extern swig_intgo _wrap_BIO_read_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_25 arg2);
+extern uintptr_t _wrap_BIO_s_bio_libssl_cc5c18f307e68e7f(void);
+extern swig_intgo _wrap_BIO_make_bio_pair_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2);
+extern void _wrap_bio_pair_bio1_set_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2);
+extern uintptr_t _wrap_bio_pair_bio1_get_libssl_cc5c18f307e68e7f(uintptr_t arg1);
+extern void _wrap_bio_pair_bio2_set_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2);
+extern uintptr_t _wrap_bio_pair_bio2_get_libssl_cc5c18f307e68e7f(uintptr_t arg1);
+extern uintptr_t _wrap_new_bio_pair_libssl_cc5c18f307e68e7f(void);
+extern void _wrap_delete_bio_pair_libssl_cc5c18f307e68e7f(uintptr_t arg1);
+extern uintptr_t _wrap_BIO_new_bio_pair_libssl_cc5c18f307e68e7f(void);
 extern uintptr_t _wrap_BIO_s_connect_libssl_cc5c18f307e68e7f(void);
-extern uintptr_t _wrap_BIO_new_connect_libssl_cc5c18f307e68e7f(swig_type_23 arg1);
-extern swig_type_24 _wrap_BIO_set_conn_hostname_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_25 arg2);
-extern swig_type_26 _wrap_BIO_do_connect_libssl_cc5c18f307e68e7f(uintptr_t arg1);
+extern uintptr_t _wrap_BIO_new_connect_libssl_cc5c18f307e68e7f(swig_type_26 arg1);
+extern swig_type_27 _wrap_BIO_set_conn_hostname_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_28 arg2);
+extern swig_type_29 _wrap_BIO_set_nbio_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_30 arg2);
+extern swig_type_31 _wrap_BIO_do_connect_libssl_cc5c18f307e68e7f(uintptr_t arg1);
 extern uintptr_t _wrap_BIO_s_fd_libssl_cc5c18f307e68e7f(void);
 extern swig_intgo _wrap_BIO_set_fd_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_intgo arg2, swig_intgo arg3);
 extern uintptr_t _wrap_BIO_new_fd_libssl_cc5c18f307e68e7f(swig_intgo arg1, swig_intgo arg2);
-extern uintptr_t _wrap_BIO_new_file_libssl_cc5c18f307e68e7f(swig_type_27 arg1, swig_type_28 arg2);
+extern uintptr_t _wrap_BIO_new_file_libssl_cc5c18f307e68e7f(swig_type_32 arg1, swig_type_33 arg2);
 extern uintptr_t _wrap_BIO_s_mem_libssl_cc5c18f307e68e7f(void);
 extern uintptr_t _wrap_BIO_s_null_libssl_cc5c18f307e68e7f(void);
 extern uintptr_t _wrap_BIO_s_socket_libssl_cc5c18f307e68e7f(void);
@@ -167,25 +185,25 @@ extern swig_intgo _wrap_BIO_seek_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_in
 extern swig_intgo _wrap_BIO_tell_libssl_cc5c18f307e68e7f(uintptr_t arg1);
 extern swig_intgo _wrap_BIO_flush_libssl_cc5c18f307e68e7f(uintptr_t arg1);
 extern swig_intgo _wrap_BIO_eof_libssl_cc5c18f307e68e7f(uintptr_t arg1);
-extern swig_intgo _wrap_BIO_set_close_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_29 arg2);
+extern swig_intgo _wrap_BIO_set_close_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_34 arg2);
 extern swig_intgo _wrap_BIO_pending_libssl_cc5c18f307e68e7f(uintptr_t arg1);
-extern swig_type_30 _wrap_BIO_ctrl_pending_libssl_cc5c18f307e68e7f(uintptr_t arg1);
-extern swig_type_31 _wrap_BIO_ctrl_wpending_libssl_cc5c18f307e68e7f(uintptr_t arg1);
+extern swig_type_35 _wrap_BIO_ctrl_pending_libssl_cc5c18f307e68e7f(uintptr_t arg1);
+extern swig_type_36 _wrap_BIO_ctrl_wpending_libssl_cc5c18f307e68e7f(uintptr_t arg1);
 extern uintptr_t _wrap_BIO_get_ex_data_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_intgo arg2);
 extern swig_intgo _wrap_BIO_set_ex_data_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_intgo arg2, uintptr_t arg3);
-extern swig_intgo _wrap_BIO_gets_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_32 arg2);
-extern swig_intgo _wrap_BIO_puts_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_33 arg2);
-extern uintptr_t _wrap_PEM_read_bio_PrivateKey_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2, swig_type_34 arg3, uintptr_t arg4);
-extern uintptr_t _wrap_PEM_read_bio_X509_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2, swig_type_35 arg3, uintptr_t arg4);
+extern swig_intgo _wrap_BIO_gets_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_37 arg2);
+extern swig_intgo _wrap_BIO_puts_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_type_38 arg2);
+extern uintptr_t _wrap_PEM_read_bio_PrivateKey_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2, swig_type_39 arg3, uintptr_t arg4);
+extern uintptr_t _wrap_PEM_read_bio_X509_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2, swig_type_40 arg3, uintptr_t arg4);
 extern swig_intgo _wrap_X509_STORE_add_cert_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2);
-extern swig_intgo _wrap_SSL_get_ex_new_index_libssl_cc5c18f307e68e7f(swig_type_36 arg1, uintptr_t arg2, uintptr_t arg3, uintptr_t arg4, uintptr_t arg5);
-extern swig_intgo _wrap_SSL_CTX_get_ex_new_index_libssl_cc5c18f307e68e7f(swig_type_37 arg1, uintptr_t arg2, uintptr_t arg3, uintptr_t arg4, uintptr_t arg5);
-extern swig_intgo _wrap_BIO_get_ex_new_index_libssl_cc5c18f307e68e7f(swig_type_38 arg1, uintptr_t arg2, uintptr_t arg3, uintptr_t arg4, uintptr_t arg5);
+extern swig_intgo _wrap_SSL_get_ex_new_index_libssl_cc5c18f307e68e7f(swig_type_41 arg1, uintptr_t arg2, uintptr_t arg3, uintptr_t arg4, uintptr_t arg5);
+extern swig_intgo _wrap_SSL_CTX_get_ex_new_index_libssl_cc5c18f307e68e7f(swig_type_42 arg1, uintptr_t arg2, uintptr_t arg3, uintptr_t arg4, uintptr_t arg5);
+extern swig_intgo _wrap_BIO_get_ex_new_index_libssl_cc5c18f307e68e7f(swig_type_43 arg1, uintptr_t arg2, uintptr_t arg3, uintptr_t arg4, uintptr_t arg5);
 extern uintptr_t _wrap_X509_STORE_CTX_get_ex_data_libssl_cc5c18f307e68e7f(uintptr_t arg1, swig_intgo arg2);
 extern swig_intgo _wrap_X509_NAME_print_libssl_cc5c18f307e68e7f(uintptr_t arg1, uintptr_t arg2, swig_intgo arg3);
 extern uintptr_t _wrap_X509_get_subject_name_libssl_cc5c18f307e68e7f(uintptr_t arg1);
 extern uintptr_t _wrap_X509_get_issuer_name_libssl_cc5c18f307e68e7f(uintptr_t arg1);
-extern swig_type_39 _wrap_X509_verify_cert_error_string_libssl_cc5c18f307e68e7f(swig_type_40 arg1);
+extern swig_type_44 _wrap_X509_verify_cert_error_string_libssl_cc5c18f307e68e7f(swig_type_45 arg1);
 extern swig_intgo _wrap_X509_STORE_CTX_get_error_libssl_cc5c18f307e68e7f(uintptr_t arg1);
 extern uintptr_t _wrap_EVP_sha256_libssl_cc5c18f307e68e7f(void);
 extern uintptr_t _wrap_EVP_sha512_libssl_cc5c18f307e68e7f(void);
@@ -332,16 +350,16 @@ func _swig_getcustom_ssl_psk_client_cb_func() (_swig_ret _swig_fnptr) {
 }
 
 var Custom_ssl_psk_client_cb_func _swig_fnptr = _swig_getcustom_ssl_psk_client_cb_func()
-func SSL_CTX_set_psk_client_callback(arg1 SSL_CTX, arg2 SSL_psk_client_cb_func) {
+func SSL_CTX_set_psk_client_callback(arg1 SSL_CTX, arg2 _swig_fnptr) {
 	_swig_i_0 := arg1.Swigcptr()
-	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_SSL_CTX_set_psk_client_callback_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	_swig_i_1 := arg2
+	C._wrap_SSL_CTX_set_psk_client_callback_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.swig_type_6(_swig_i_1))
 }
 
-func SSL_set_psk_client_callback(arg1 SSL, arg2 SSL_psk_client_cb_func) {
+func SSL_set_psk_client_callback(arg1 SSL, arg2 _swig_fnptr) {
 	_swig_i_0 := arg1.Swigcptr()
-	_swig_i_1 := arg2.Swigcptr()
-	C._wrap_SSL_set_psk_client_callback_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+	_swig_i_1 := arg2
+	C._wrap_SSL_set_psk_client_callback_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.swig_type_7(_swig_i_1))
 }
 
 func SSL_CTX_get0_certificate(arg1 SSL_CTX) (_swig_ret X509) {
@@ -459,7 +477,7 @@ func SSL_use_certificate_file(arg1 SSL, arg2 string, arg3 int) (_swig_ret int) {
 	_swig_i_0 := arg1.Swigcptr()
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	swig_r = (int)(C._wrap_SSL_use_certificate_file_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_6)(unsafe.Pointer(&_swig_i_1)), C.swig_intgo(_swig_i_2)))
+	swig_r = (int)(C._wrap_SSL_use_certificate_file_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_8)(unsafe.Pointer(&_swig_i_1)), C.swig_intgo(_swig_i_2)))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -470,7 +488,7 @@ func SSL_CTX_use_certificate_chain_file(arg1 SSL_CTX, arg2 string) (_swig_ret in
 	var swig_r int
 	_swig_i_0 := arg1.Swigcptr()
 	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_SSL_CTX_use_certificate_chain_file_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_7)(unsafe.Pointer(&_swig_i_1))))
+	swig_r = (int)(C._wrap_SSL_CTX_use_certificate_chain_file_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_9)(unsafe.Pointer(&_swig_i_1))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -481,7 +499,7 @@ func SSL_use_certificate_chain_file(arg1 SSL, arg2 string) (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1.Swigcptr()
 	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_SSL_use_certificate_chain_file_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_8)(unsafe.Pointer(&_swig_i_1))))
+	swig_r = (int)(C._wrap_SSL_use_certificate_chain_file_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_10)(unsafe.Pointer(&_swig_i_1))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -501,7 +519,7 @@ func SSL_CTX_use_PrivateKey_file(arg1 SSL_CTX, arg2 string, arg3 int) (_swig_ret
 	_swig_i_0 := arg1.Swigcptr()
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	swig_r = (int)(C._wrap_SSL_CTX_use_PrivateKey_file_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_9)(unsafe.Pointer(&_swig_i_1)), C.swig_intgo(_swig_i_2)))
+	swig_r = (int)(C._wrap_SSL_CTX_use_PrivateKey_file_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_11)(unsafe.Pointer(&_swig_i_1)), C.swig_intgo(_swig_i_2)))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -520,7 +538,7 @@ func SSL_set_tlsext_host_name(arg1 SSL, arg2 string) (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1.Swigcptr()
 	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_SSL_set_tlsext_host_name_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_10)(unsafe.Pointer(&_swig_i_1))))
+	swig_r = (int)(C._wrap_SSL_set_tlsext_host_name_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_12)(unsafe.Pointer(&_swig_i_1))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -532,7 +550,7 @@ func SSL_CTX_load_verify_locations(arg1 SSL_CTX, arg2 string, arg3 string) (_swi
 	_swig_i_0 := arg1.Swigcptr()
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	swig_r = (int)(C._wrap_SSL_CTX_load_verify_locations_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_11)(unsafe.Pointer(&_swig_i_1)), *(*C.swig_type_12)(unsafe.Pointer(&_swig_i_2))))
+	swig_r = (int)(C._wrap_SSL_CTX_load_verify_locations_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_13)(unsafe.Pointer(&_swig_i_1)), *(*C.swig_type_14)(unsafe.Pointer(&_swig_i_2))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -567,7 +585,7 @@ func SSL_CTX_set_alpn_protos(arg1 SSL_CTX, arg2 []byte) (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1.Swigcptr()
 	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_SSL_CTX_set_alpn_protos_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_13)(unsafe.Pointer(&_swig_i_1))))
+	swig_r = (int)(C._wrap_SSL_CTX_set_alpn_protos_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_15)(unsafe.Pointer(&_swig_i_1))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -578,7 +596,7 @@ func SSL_set_alpn_protos(arg1 SSL, arg2 []byte) (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1.Swigcptr()
 	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_SSL_set_alpn_protos_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_14)(unsafe.Pointer(&_swig_i_1))))
+	swig_r = (int)(C._wrap_SSL_set_alpn_protos_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_16)(unsafe.Pointer(&_swig_i_1))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -638,7 +656,7 @@ func SSL_CTX_set_verify(arg1 SSL_CTX, arg2 int, arg3 _swig_fnptr) {
 	_swig_i_0 := arg1.Swigcptr()
 	_swig_i_1 := arg2
 	_swig_i_2 := arg3
-	C._wrap_SSL_CTX_set_verify_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1), C.swig_type_16(_swig_i_2))
+	C._wrap_SSL_CTX_set_verify_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.swig_intgo(_swig_i_1), C.swig_type_18(_swig_i_2))
 }
 
 func SSL_get_ex_data_X509_STORE_CTX_idx() (_swig_ret int) {
@@ -673,6 +691,36 @@ func SSL_CTX_get_cert_store(arg1 SSL_CTX) (_swig_ret X509_STORE) {
 	return swig_r
 }
 
+func SSL_get_verify_result(arg1 SSL) (_swig_ret int64) {
+	var swig_r int64
+	_swig_i_0 := arg1.Swigcptr()
+	swig_r = (int64)(C._wrap_SSL_get_verify_result_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0)))
+	return swig_r
+}
+
+func SSL_CTX_set_options(arg1 SSL_CTX, arg2 Uint64_t) (_swig_ret Uint64_t) {
+	var swig_r Uint64_t
+	_swig_i_0 := arg1.Swigcptr()
+	_swig_i_1 := arg2.Swigcptr()
+	swig_r = (Uint64_t)(SwigcptrUint64_t(C._wrap_SSL_CTX_set_options_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))))
+	return swig_r
+}
+
+func SSL_set_options(arg1 SSL, arg2 Uint64_t) (_swig_ret Uint64_t) {
+	var swig_r Uint64_t
+	_swig_i_0 := arg1.Swigcptr()
+	_swig_i_1 := arg2.Swigcptr()
+	swig_r = (Uint64_t)(SwigcptrUint64_t(C._wrap_SSL_set_options_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))))
+	return swig_r
+}
+
+const SSL_OP_NO_SSLv3 uint = 0x02000000
+const SSL_OP_NO_TLSv1 uint = 0x04000000
+const SSL_OP_NO_TLSv1_2 uint = 0x08000000
+const SSL_OP_NO_TLSv1_1 uint = 0x10000000
+const SSL_OP_NO_TLSv1_3 uint = 0x20000000
+const SSL_OP_NO_DTLSv1 uint = 0x04000000
+const SSL_OP_NO_DTLSv1_2 uint = 0x08000000
 const BIO_NOCLOSE int = 0x00
 const BIO_CLOSE int = 0x01
 func BIO_f_base64() (_swig_ret BIO_METHOD) {
@@ -700,7 +748,7 @@ func BIO_set_cipher(arg1 BIO, arg2 EVP_CIPHER, arg3 []byte, arg4 []byte, arg5 in
 	_swig_i_2 := arg3
 	_swig_i_3 := arg4
 	_swig_i_4 := arg5
-	swig_r = (int)(C._wrap_BIO_set_cipher_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), *(*C.swig_type_17)(unsafe.Pointer(&_swig_i_2)), *(*C.swig_type_18)(unsafe.Pointer(&_swig_i_3)), C.swig_intgo(_swig_i_4)))
+	swig_r = (int)(C._wrap_BIO_set_cipher_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), *(*C.swig_type_20)(unsafe.Pointer(&_swig_i_2)), *(*C.swig_type_21)(unsafe.Pointer(&_swig_i_3)), C.swig_intgo(_swig_i_4)))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg3
 	}
@@ -799,7 +847,7 @@ func BIO_s_accept() (_swig_ret BIO_METHOD) {
 func BIO_new_accept(arg1 string) (_swig_ret BIO) {
 	var swig_r BIO
 	_swig_i_0 := arg1
-	swig_r = (BIO)(SwigcptrBIO(C._wrap_BIO_new_accept_libssl_cc5c18f307e68e7f(*(*C.swig_type_19)(unsafe.Pointer(&_swig_i_0)))))
+	swig_r = (BIO)(SwigcptrBIO(C._wrap_BIO_new_accept_libssl_cc5c18f307e68e7f(*(*C.swig_type_22)(unsafe.Pointer(&_swig_i_0)))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg1
 	}
@@ -824,7 +872,7 @@ func BIO_write(arg1 BIO, arg2 []byte) (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1.Swigcptr()
 	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_BIO_write_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_21)(unsafe.Pointer(&_swig_i_1))))
+	swig_r = (int)(C._wrap_BIO_write_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_24)(unsafe.Pointer(&_swig_i_1))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -835,10 +883,85 @@ func BIO_read(arg1 BIO, arg2 []byte) (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1.Swigcptr()
 	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_BIO_read_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_22)(unsafe.Pointer(&_swig_i_1))))
+	swig_r = (int)(C._wrap_BIO_read_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_25)(unsafe.Pointer(&_swig_i_1))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
+	return swig_r
+}
+
+func BIO_s_bio() (_swig_ret BIO_METHOD) {
+	var swig_r BIO_METHOD
+	swig_r = (BIO_METHOD)(SwigcptrBIO_METHOD(C._wrap_BIO_s_bio_libssl_cc5c18f307e68e7f()))
+	return swig_r
+}
+
+func BIO_make_bio_pair(arg1 BIO, arg2 BIO) (_swig_ret int) {
+	var swig_r int
+	_swig_i_0 := arg1.Swigcptr()
+	_swig_i_1 := arg2.Swigcptr()
+	swig_r = (int)(C._wrap_BIO_make_bio_pair_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1)))
+	return swig_r
+}
+
+type SwigcptrBio_pair uintptr
+
+func (p SwigcptrBio_pair) Swigcptr() uintptr {
+	return (uintptr)(p)
+}
+
+func (p SwigcptrBio_pair) SwigIsBio_pair() {
+}
+
+func (arg1 SwigcptrBio_pair) SetBio1(arg2 BIO) {
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	C._wrap_bio_pair_bio1_set_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+}
+
+func (arg1 SwigcptrBio_pair) GetBio1() (_swig_ret BIO) {
+	var swig_r BIO
+	_swig_i_0 := arg1
+	swig_r = (BIO)(SwigcptrBIO(C._wrap_bio_pair_bio1_get_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0))))
+	return swig_r
+}
+
+func (arg1 SwigcptrBio_pair) SetBio2(arg2 BIO) {
+	_swig_i_0 := arg1
+	_swig_i_1 := arg2.Swigcptr()
+	C._wrap_bio_pair_bio2_set_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1))
+}
+
+func (arg1 SwigcptrBio_pair) GetBio2() (_swig_ret BIO) {
+	var swig_r BIO
+	_swig_i_0 := arg1
+	swig_r = (BIO)(SwigcptrBIO(C._wrap_bio_pair_bio2_get_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0))))
+	return swig_r
+}
+
+func NewBio_pair() (_swig_ret Bio_pair) {
+	var swig_r Bio_pair
+	swig_r = (Bio_pair)(SwigcptrBio_pair(C._wrap_new_bio_pair_libssl_cc5c18f307e68e7f()))
+	return swig_r
+}
+
+func DeleteBio_pair(arg1 Bio_pair) {
+	_swig_i_0 := arg1.Swigcptr()
+	C._wrap_delete_bio_pair_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0))
+}
+
+type Bio_pair interface {
+	Swigcptr() uintptr
+	SwigIsBio_pair()
+	SetBio1(arg2 BIO)
+	GetBio1() (_swig_ret BIO)
+	SetBio2(arg2 BIO)
+	GetBio2() (_swig_ret BIO)
+}
+
+func BIO_new_bio_pair() (_swig_ret Bio_pair) {
+	var swig_r Bio_pair
+	swig_r = (Bio_pair)(SwigcptrBio_pair(C._wrap_BIO_new_bio_pair_libssl_cc5c18f307e68e7f()))
 	return swig_r
 }
 
@@ -851,7 +974,7 @@ func BIO_s_connect() (_swig_ret BIO_METHOD) {
 func BIO_new_connect(arg1 string) (_swig_ret BIO) {
 	var swig_r BIO
 	_swig_i_0 := arg1
-	swig_r = (BIO)(SwigcptrBIO(C._wrap_BIO_new_connect_libssl_cc5c18f307e68e7f(*(*C.swig_type_23)(unsafe.Pointer(&_swig_i_0)))))
+	swig_r = (BIO)(SwigcptrBIO(C._wrap_BIO_new_connect_libssl_cc5c18f307e68e7f(*(*C.swig_type_26)(unsafe.Pointer(&_swig_i_0)))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg1
 	}
@@ -862,10 +985,18 @@ func BIO_set_conn_hostname(arg1 BIO, arg2 string) (_swig_ret int64) {
 	var swig_r int64
 	_swig_i_0 := arg1.Swigcptr()
 	_swig_i_1 := arg2
-	swig_r = (int64)(C._wrap_BIO_set_conn_hostname_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_25)(unsafe.Pointer(&_swig_i_1))))
+	swig_r = (int64)(C._wrap_BIO_set_conn_hostname_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_28)(unsafe.Pointer(&_swig_i_1))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
+	return swig_r
+}
+
+func BIO_set_nbio(arg1 BIO, arg2 int64) (_swig_ret int64) {
+	var swig_r int64
+	_swig_i_0 := arg1.Swigcptr()
+	_swig_i_1 := arg2
+	swig_r = (int64)(C._wrap_BIO_set_nbio_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.swig_type_30(_swig_i_1)))
 	return swig_r
 }
 
@@ -903,7 +1034,7 @@ func BIO_new_file(arg1 string, arg2 string) (_swig_ret BIO) {
 	var swig_r BIO
 	_swig_i_0 := arg1
 	_swig_i_1 := arg2
-	swig_r = (BIO)(SwigcptrBIO(C._wrap_BIO_new_file_libssl_cc5c18f307e68e7f(*(*C.swig_type_27)(unsafe.Pointer(&_swig_i_0)), *(*C.swig_type_28)(unsafe.Pointer(&_swig_i_1)))))
+	swig_r = (BIO)(SwigcptrBIO(C._wrap_BIO_new_file_libssl_cc5c18f307e68e7f(*(*C.swig_type_32)(unsafe.Pointer(&_swig_i_0)), *(*C.swig_type_33)(unsafe.Pointer(&_swig_i_1)))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg1
 	}
@@ -1000,7 +1131,7 @@ func BIO_set_close(arg1 BIO, arg2 int64) (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1.Swigcptr()
 	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_BIO_set_close_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.swig_type_29(_swig_i_1)))
+	swig_r = (int)(C._wrap_BIO_set_close_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.swig_type_34(_swig_i_1)))
 	return swig_r
 }
 
@@ -1046,7 +1177,7 @@ func BIO_gets(arg1 BIO, arg2 []byte) (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1.Swigcptr()
 	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_BIO_gets_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_32)(unsafe.Pointer(&_swig_i_1))))
+	swig_r = (int)(C._wrap_BIO_gets_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_37)(unsafe.Pointer(&_swig_i_1))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -1057,7 +1188,7 @@ func BIO_puts(arg1 BIO, arg2 string) (_swig_ret int) {
 	var swig_r int
 	_swig_i_0 := arg1.Swigcptr()
 	_swig_i_1 := arg2
-	swig_r = (int)(C._wrap_BIO_puts_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_33)(unsafe.Pointer(&_swig_i_1))))
+	swig_r = (int)(C._wrap_BIO_puts_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), *(*C.swig_type_38)(unsafe.Pointer(&_swig_i_1))))
 	if Swig_escape_always_false {
 		Swig_escape_val = arg2
 	}
@@ -1070,7 +1201,7 @@ func PEM_read_bio_PrivateKey(arg1 BIO, arg2 EVP_PKEY, arg3 _swig_fnptr, arg4 uin
 	_swig_i_1 := arg2.Swigcptr()
 	_swig_i_2 := arg3
 	_swig_i_3 := arg4
-	swig_r = (EVP_PKEY)(SwigcptrEVP_PKEY(C._wrap_PEM_read_bio_PrivateKey_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.swig_type_34(_swig_i_2), C.uintptr_t(_swig_i_3))))
+	swig_r = (EVP_PKEY)(SwigcptrEVP_PKEY(C._wrap_PEM_read_bio_PrivateKey_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.swig_type_39(_swig_i_2), C.uintptr_t(_swig_i_3))))
 	return swig_r
 }
 
@@ -1080,7 +1211,7 @@ func PEM_read_bio_X509(arg1 BIO, arg2 X509, arg3 _swig_fnptr, arg4 uintptr) (_sw
 	_swig_i_1 := arg2.Swigcptr()
 	_swig_i_2 := arg3
 	_swig_i_3 := arg4
-	swig_r = (X509)(SwigcptrX509(C._wrap_PEM_read_bio_X509_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.swig_type_35(_swig_i_2), C.uintptr_t(_swig_i_3))))
+	swig_r = (X509)(SwigcptrX509(C._wrap_PEM_read_bio_X509_libssl_cc5c18f307e68e7f(C.uintptr_t(_swig_i_0), C.uintptr_t(_swig_i_1), C.swig_type_40(_swig_i_2), C.uintptr_t(_swig_i_3))))
 	return swig_r
 }
 
@@ -1099,7 +1230,7 @@ func SSL_get_ex_new_index(arg1 int64, arg2 uintptr, arg3 CRYPTO_EX_new, arg4 CRY
 	_swig_i_2 := arg3.Swigcptr()
 	_swig_i_3 := arg4.Swigcptr()
 	_swig_i_4 := arg5.Swigcptr()
-	swig_r = (int)(C._wrap_SSL_get_ex_new_index_libssl_cc5c18f307e68e7f(C.swig_type_36(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2), C.uintptr_t(_swig_i_3), C.uintptr_t(_swig_i_4)))
+	swig_r = (int)(C._wrap_SSL_get_ex_new_index_libssl_cc5c18f307e68e7f(C.swig_type_41(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2), C.uintptr_t(_swig_i_3), C.uintptr_t(_swig_i_4)))
 	return swig_r
 }
 
@@ -1110,7 +1241,7 @@ func SSL_CTX_get_ex_new_index(arg1 int64, arg2 uintptr, arg3 CRYPTO_EX_new, arg4
 	_swig_i_2 := arg3.Swigcptr()
 	_swig_i_3 := arg4.Swigcptr()
 	_swig_i_4 := arg5.Swigcptr()
-	swig_r = (int)(C._wrap_SSL_CTX_get_ex_new_index_libssl_cc5c18f307e68e7f(C.swig_type_37(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2), C.uintptr_t(_swig_i_3), C.uintptr_t(_swig_i_4)))
+	swig_r = (int)(C._wrap_SSL_CTX_get_ex_new_index_libssl_cc5c18f307e68e7f(C.swig_type_42(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2), C.uintptr_t(_swig_i_3), C.uintptr_t(_swig_i_4)))
 	return swig_r
 }
 
@@ -1121,7 +1252,7 @@ func BIO_get_ex_new_index(arg1 int64, arg2 uintptr, arg3 CRYPTO_EX_new, arg4 CRY
 	_swig_i_2 := arg3.Swigcptr()
 	_swig_i_3 := arg4.Swigcptr()
 	_swig_i_4 := arg5.Swigcptr()
-	swig_r = (int)(C._wrap_BIO_get_ex_new_index_libssl_cc5c18f307e68e7f(C.swig_type_38(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2), C.uintptr_t(_swig_i_3), C.uintptr_t(_swig_i_4)))
+	swig_r = (int)(C._wrap_BIO_get_ex_new_index_libssl_cc5c18f307e68e7f(C.swig_type_43(_swig_i_0), C.uintptr_t(_swig_i_1), C.uintptr_t(_swig_i_2), C.uintptr_t(_swig_i_3), C.uintptr_t(_swig_i_4)))
 	return swig_r
 }
 
@@ -1159,7 +1290,7 @@ func X509_get_issuer_name(arg1 X509) (_swig_ret X509_NAME) {
 func X509_verify_cert_error_string(arg1 int64) (_swig_ret string) {
 	var swig_r string
 	_swig_i_0 := arg1
-	swig_r_p := C._wrap_X509_verify_cert_error_string_libssl_cc5c18f307e68e7f(C.swig_type_40(_swig_i_0))
+	swig_r_p := C._wrap_X509_verify_cert_error_string_libssl_cc5c18f307e68e7f(C.swig_type_45(_swig_i_0))
 	swig_r = *(*string)(unsafe.Pointer(&swig_r_p))
 	var swig_r_1 string
  swig_r_1 = swigCopyString(swig_r) 
@@ -1248,14 +1379,6 @@ func EVP_CIPHER_iv_length(arg1 EVP_CIPHER) (_swig_ret int) {
 }
 
 
-type SwigcptrSSL_psk_client_cb_func uintptr
-type SSL_psk_client_cb_func interface {
-	Swigcptr() uintptr;
-}
-func (p SwigcptrSSL_psk_client_cb_func) Swigcptr() uintptr {
-	return uintptr(p)
-}
-
 type SwigcptrEVP_MD uintptr
 type EVP_MD interface {
 	Swigcptr() uintptr;
@@ -1277,6 +1400,14 @@ type SSL interface {
 	Swigcptr() uintptr;
 }
 func (p SwigcptrSSL) Swigcptr() uintptr {
+	return uintptr(p)
+}
+
+type SwigcptrUint64_t uintptr
+type Uint64_t interface {
+	Swigcptr() uintptr;
+}
+func (p SwigcptrUint64_t) Swigcptr() uintptr {
 	return uintptr(p)
 }
 
@@ -1360,19 +1491,19 @@ func (p SwigcptrEVP_CIPHER) Swigcptr() uintptr {
 	return uintptr(p)
 }
 
-type SwigcptrCRYPTO_EX_free uintptr
-type CRYPTO_EX_free interface {
-	Swigcptr() uintptr;
-}
-func (p SwigcptrCRYPTO_EX_free) Swigcptr() uintptr {
-	return uintptr(p)
-}
-
 type SwigcptrSSL_CTX uintptr
 type SSL_CTX interface {
 	Swigcptr() uintptr;
 }
 func (p SwigcptrSSL_CTX) Swigcptr() uintptr {
+	return uintptr(p)
+}
+
+type SwigcptrCRYPTO_EX_free uintptr
+type CRYPTO_EX_free interface {
+	Swigcptr() uintptr;
+}
+func (p SwigcptrCRYPTO_EX_free) Swigcptr() uintptr {
 	return uintptr(p)
 }
 

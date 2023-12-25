@@ -278,6 +278,21 @@ SSL *my_bio_get_ssl(BIO *b){
 }
 
 
+struct bio_pair {
+    BIO *bio1;
+    BIO *bio2;
+};
+struct bio_pair * custom_new_bio_pair(){
+    struct bio_pair * p = malloc(sizeof(struct bio_pair));
+    int ret = BIO_new_bio_pair(&p->bio1, 0, &p->bio2, 0);
+    if (ret <= 0){
+        free(p);
+        return NULL;
+    }
+    return p;
+}
+
+
   #include <openssl/x509_vfy.h>  
   #include <openssl/pem.h>
   #include <openssl/store.h>
@@ -491,38 +506,24 @@ void* _wrap_custom_ssl_psk_client_cb_func_libssl_cc5c18f307e68e7f() {
 }
 
 
-void _wrap_SSL_CTX_set_psk_client_callback_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0, SSL_psk_client_cb_func *_swig_go_1) {
+void _wrap_SSL_CTX_set_psk_client_callback_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0, void* _swig_go_1) {
   SSL_CTX *arg1 = (SSL_CTX *) 0 ;
-  SSL_psk_client_cb_func arg2 ;
-  SSL_psk_client_cb_func *argp2 ;
+  SSL_psk_client_cb_func arg2 = (SSL_psk_client_cb_func) 0 ;
   
   arg1 = *(SSL_CTX **)&_swig_go_0; 
-  
-  argp2 = (SSL_psk_client_cb_func *)_swig_go_1;
-  if (argp2 == NULL) {
-    _swig_gopanic("Attempt to dereference null SSL_psk_client_cb_func");
-  }
-  arg2 = (SSL_psk_client_cb_func)*argp2;
-  
+  arg2 = *(SSL_psk_client_cb_func *)&_swig_go_1; 
   
   SSL_CTX_set_psk_client_callback(arg1,arg2);
   
 }
 
 
-void _wrap_SSL_set_psk_client_callback_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, SSL_psk_client_cb_func *_swig_go_1) {
+void _wrap_SSL_set_psk_client_callback_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, void* _swig_go_1) {
   SSL *arg1 = (SSL *) 0 ;
-  SSL_psk_client_cb_func arg2 ;
-  SSL_psk_client_cb_func *argp2 ;
+  SSL_psk_client_cb_func arg2 = (SSL_psk_client_cb_func) 0 ;
   
   arg1 = *(SSL **)&_swig_go_0; 
-  
-  argp2 = (SSL_psk_client_cb_func *)_swig_go_1;
-  if (argp2 == NULL) {
-    _swig_gopanic("Attempt to dereference null SSL_psk_client_cb_func");
-  }
-  arg2 = (SSL_psk_client_cb_func)*argp2;
-  
+  arg2 = *(SSL_psk_client_cb_func *)&_swig_go_1; 
   
   SSL_set_psk_client_callback(arg1,arg2);
   
@@ -1126,6 +1127,71 @@ X509_STORE *_wrap_SSL_CTX_get_cert_store_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_
 }
 
 
+long long _wrap_SSL_get_verify_result_libssl_cc5c18f307e68e7f(SSL *_swig_go_0) {
+  SSL *arg1 = (SSL *) 0 ;
+  long result;
+  long long _swig_go_result;
+  
+  arg1 = *(SSL **)&_swig_go_0; 
+  
+  result = (long)SSL_get_verify_result((SSL const *)arg1);
+  _swig_go_result = result; 
+  return _swig_go_result;
+}
+
+
+uint64_t *_wrap_SSL_CTX_set_options_libssl_cc5c18f307e68e7f(SSL_CTX *_swig_go_0, uint64_t *_swig_go_1) {
+  SSL_CTX *arg1 = (SSL_CTX *) 0 ;
+  uint64_t arg2 ;
+  uint64_t *argp2 ;
+  uint64_t result;
+  uint64_t *_swig_go_result;
+  
+  arg1 = *(SSL_CTX **)&_swig_go_0; 
+  
+  argp2 = (uint64_t *)_swig_go_1;
+  if (argp2 == NULL) {
+    _swig_gopanic("Attempt to dereference null uint64_t");
+  }
+  arg2 = (uint64_t)*argp2;
+  
+  
+  result = SSL_CTX_set_options(arg1,arg2);
+  {
+    uint64_t * resultptr = (uint64_t *)malloc(sizeof(uint64_t));
+    memmove(resultptr, &result, sizeof(uint64_t));
+    *(uint64_t **)&_swig_go_result = resultptr;
+  }
+  return _swig_go_result;
+}
+
+
+uint64_t *_wrap_SSL_set_options_libssl_cc5c18f307e68e7f(SSL *_swig_go_0, uint64_t *_swig_go_1) {
+  SSL *arg1 = (SSL *) 0 ;
+  uint64_t arg2 ;
+  uint64_t *argp2 ;
+  uint64_t result;
+  uint64_t *_swig_go_result;
+  
+  arg1 = *(SSL **)&_swig_go_0; 
+  
+  argp2 = (uint64_t *)_swig_go_1;
+  if (argp2 == NULL) {
+    _swig_gopanic("Attempt to dereference null uint64_t");
+  }
+  arg2 = (uint64_t)*argp2;
+  
+  
+  result = SSL_set_options(arg1,arg2);
+  {
+    uint64_t * resultptr = (uint64_t *)malloc(sizeof(uint64_t));
+    memmove(resultptr, &result, sizeof(uint64_t));
+    *(uint64_t **)&_swig_go_result = resultptr;
+  }
+  return _swig_go_result;
+}
+
+
 BIO_METHOD *_wrap_BIO_f_base64_libssl_cc5c18f307e68e7f() {
   BIO_METHOD *result = 0 ;
   BIO_METHOD *_swig_go_result;
@@ -1441,6 +1507,114 @@ intgo _wrap_BIO_read_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, _goslice_ _swig_go
 }
 
 
+BIO_METHOD *_wrap_BIO_s_bio_libssl_cc5c18f307e68e7f() {
+  BIO_METHOD *result = 0 ;
+  BIO_METHOD *_swig_go_result;
+  
+  
+  result = (BIO_METHOD *)BIO_s_bio();
+  *(BIO_METHOD **)&_swig_go_result = (BIO_METHOD *)result; 
+  return _swig_go_result;
+}
+
+
+intgo _wrap_BIO_make_bio_pair_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, BIO *_swig_go_1) {
+  BIO *arg1 = (BIO *) 0 ;
+  BIO *arg2 = (BIO *) 0 ;
+  int result;
+  intgo _swig_go_result;
+  
+  arg1 = *(BIO **)&_swig_go_0; 
+  arg2 = *(BIO **)&_swig_go_1; 
+  
+  result = (int)BIO_make_bio_pair(arg1,arg2);
+  _swig_go_result = result; 
+  return _swig_go_result;
+}
+
+
+void _wrap_bio_pair_bio1_set_libssl_cc5c18f307e68e7f(struct bio_pair *_swig_go_0, BIO *_swig_go_1) {
+  struct bio_pair *arg1 = (struct bio_pair *) 0 ;
+  BIO *arg2 = (BIO *) 0 ;
+  
+  arg1 = *(struct bio_pair **)&_swig_go_0; 
+  arg2 = *(BIO **)&_swig_go_1; 
+  
+  if (arg1) (arg1)->bio1 = arg2;
+  
+}
+
+
+BIO *_wrap_bio_pair_bio1_get_libssl_cc5c18f307e68e7f(struct bio_pair *_swig_go_0) {
+  struct bio_pair *arg1 = (struct bio_pair *) 0 ;
+  BIO *result = 0 ;
+  BIO *_swig_go_result;
+  
+  arg1 = *(struct bio_pair **)&_swig_go_0; 
+  
+  result = (BIO *) ((arg1)->bio1);
+  *(BIO **)&_swig_go_result = (BIO *)result; 
+  return _swig_go_result;
+}
+
+
+void _wrap_bio_pair_bio2_set_libssl_cc5c18f307e68e7f(struct bio_pair *_swig_go_0, BIO *_swig_go_1) {
+  struct bio_pair *arg1 = (struct bio_pair *) 0 ;
+  BIO *arg2 = (BIO *) 0 ;
+  
+  arg1 = *(struct bio_pair **)&_swig_go_0; 
+  arg2 = *(BIO **)&_swig_go_1; 
+  
+  if (arg1) (arg1)->bio2 = arg2;
+  
+}
+
+
+BIO *_wrap_bio_pair_bio2_get_libssl_cc5c18f307e68e7f(struct bio_pair *_swig_go_0) {
+  struct bio_pair *arg1 = (struct bio_pair *) 0 ;
+  BIO *result = 0 ;
+  BIO *_swig_go_result;
+  
+  arg1 = *(struct bio_pair **)&_swig_go_0; 
+  
+  result = (BIO *) ((arg1)->bio2);
+  *(BIO **)&_swig_go_result = (BIO *)result; 
+  return _swig_go_result;
+}
+
+
+struct bio_pair *_wrap_new_bio_pair_libssl_cc5c18f307e68e7f() {
+  struct bio_pair *result = 0 ;
+  struct bio_pair *_swig_go_result;
+  
+  
+  result = (struct bio_pair *)calloc(1, sizeof(struct bio_pair));
+  *(struct bio_pair **)&_swig_go_result = (struct bio_pair *)result; 
+  return _swig_go_result;
+}
+
+
+void _wrap_delete_bio_pair_libssl_cc5c18f307e68e7f(struct bio_pair *_swig_go_0) {
+  struct bio_pair *arg1 = (struct bio_pair *) 0 ;
+  
+  arg1 = *(struct bio_pair **)&_swig_go_0; 
+  
+  free((char *) arg1);
+  
+}
+
+
+struct bio_pair *_wrap_BIO_new_bio_pair_libssl_cc5c18f307e68e7f() {
+  struct bio_pair *result = 0 ;
+  struct bio_pair *_swig_go_result;
+  
+  
+  result = (struct bio_pair *)custom_new_bio_pair();
+  *(struct bio_pair **)&_swig_go_result = (struct bio_pair *)result; 
+  return _swig_go_result;
+}
+
+
 BIO_METHOD *_wrap_BIO_s_connect_libssl_cc5c18f307e68e7f() {
   BIO_METHOD *result = 0 ;
   BIO_METHOD *_swig_go_result;
@@ -1486,6 +1660,21 @@ long long _wrap_BIO_set_conn_hostname_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, _
   result = (long)BIO_set_conn_hostname(arg1,arg2);
   _swig_go_result = result; 
   free(arg2); 
+  return _swig_go_result;
+}
+
+
+long long _wrap_BIO_set_nbio_libssl_cc5c18f307e68e7f(BIO *_swig_go_0, long long _swig_go_1) {
+  BIO *arg1 = (BIO *) 0 ;
+  long arg2 ;
+  long result;
+  long long _swig_go_result;
+  
+  arg1 = *(BIO **)&_swig_go_0; 
+  arg2 = (long)_swig_go_1; 
+  
+  result = (long)BIO_set_nbio(arg1,arg2);
+  _swig_go_result = result; 
   return _swig_go_result;
 }
 
