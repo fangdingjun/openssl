@@ -30,27 +30,6 @@ func GoSslPskClientCbFunc(_ssl uintptr, hint *C.char, identity *C.char,
 		}
 		return C.uint(len(_psk))
 	}
-	/*
-
-		//fmt.Printf("psk client cb\n")
-
-		ssl := SwigcptrSSL(_ssl)
-		c := SSL_get_ex_data(ssl, sslDataIdx)
-		conn := (*Conn)(unsafe.Pointer(c))
-		//fmt.Printf("config %+v\n", conn.config)
-
-		identityC := C.CString(conn.config.Identity)
-		defer C.free(unsafe.Pointer(identityC))
-
-		C.strcpy(identity, identityC)
-
-		pskC := C.CBytes(conn.config.Psk)
-		defer C.free(pskC)
-
-		C.memcpy(unsafe.Pointer(psk), pskC, C.ulong(len(conn.config.Psk)))
-
-		return C.uint(len(conn.config.Psk))
-	*/
 	return C.uint(0)
 }
 
@@ -60,28 +39,6 @@ func GoSslVerifyCb(preverify_ok C.int, x509_ctx uintptr) C.int {
 		ret := globalVerifyCallback(int(preverify_ok), x509_ctx)
 		return C.int(ret)
 	}
-	/*
-		//fmt.Printf("verify callback, preverify %d\n", preverify_ok)
-		storeCtx := SwigcptrX509_STORE_CTX(x509_ctx)
-		a := X509_STORE_CTX_get_ex_data(storeCtx, SSL_get_ex_data_X509_STORE_CTX_idx())
-
-		ssl := SwigcptrSSL(a)
-
-		c := SSL_get_ex_data(ssl, sslDataIdx)
-		conn := (*Conn)(unsafe.Pointer(c))
-
-		//fmt.Printf("config %+v\n", conn.config)
-
-		if conn.config.InsecureSkipVerify || conn.isServer {
-			return C.int(1)
-		}
-
-		if int(preverify_ok) == 0 {
-			errcode := X509_STORE_CTX_get_error(storeCtx)
-			fmt.Printf("certificate verify error: %s\n", X509_verify_cert_error_string(int64(errcode)))
-		}
-		return preverify_ok
-	*/
 	return C.int(1)
 }
 
